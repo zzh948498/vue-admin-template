@@ -1,8 +1,8 @@
-import { createMd5 } from '@/utils/crypto';
 import request from '@/utils/request';
+import MD5 from 'react-native-md5';
 
 export function login(data) {
-    console.log(createMd5('1'));
+    console.log(MD5.hex_md5('1'));
     return request({
         url: '/vue-admin-template/user/login',
         method: 'post',

@@ -118,13 +118,16 @@ export default {
             });
         },
         handleLogin() {
+            console.log(`handleLogin`);
             this.$refs.loginForm.validate(valid => {
+                console.log(valid);
                 if (valid) {
                     this.loading = true;
                     this.$store
                         .dispatch('user/login', this.loginForm)
                         .then(() => {
                             this.loading = false;
+                            console.log(this.redirect);
                             // catch todo
                             // https://stackoverflow.com/questions/62223195/vue-router-uncaught-in-promise-error-redirected-from-login-to-via-a
                             this.$router.push({ path: this.redirect || '/' }).catch(() => ({}));

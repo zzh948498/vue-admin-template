@@ -1,89 +1,43 @@
-# vue-admin-template
-
-English | [简体中文](./README-zh.md)
-
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
-
-**Live demo:** http://panjiachen.github.io/vue-admin-template
-
-
-**The current version is `v4.0+` build on `vue-cli`. If you want to use the old version , you can switch branch to [tag/3.11.0](https://github.com/PanJiaChen/vue-admin-template/tree/tag/3.11.0), it does not rely on `vue-cli`**
-
-<p align="center">
-  <b>SPONSORED BY</b>
-</p>
-<p align="center">
-   <a href="https://finclip.com?from=vue_element" title="FinClip" target="_blank">
-      <img height="200px" src="https://gitee.com/panjiachen/gitee-cdn/raw/master/vue%E8%B5%9E%E5%8A%A9.png" title="FinClip">
-   </a>
-</p>
-
+# zoneyet-admin-vue
+总管理后台
 ## Build Setup
 
 ```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
 
-# enter the project directory
-cd vue-admin-template
+# 安装依赖
+yarn
 
-# install dependency
-npm install
-
-# develop
-npm run dev
+# 启动服务
+yarn dev
 ```
 
-This will automatically open http://localhost:9528
+浏览器访问 [http://localhost:9528](http://localhost:9528)
 
-## Build
+## 发布
 
 ```bash
-# build for test environment
-npm run build:stage
+# 构建测试环境
+yarn build:stage
 
-# build for production environment
-npm run build:prod
+# 构建生产环境
+yarn build:prod
 ```
 
-## Advanced
+## 其它
 
 ```bash
-# preview the release environment effect
-npm run preview
+# 预览发布环境效果
+yarn preview
 
-# preview the release environment effect + static resource analysis
-npm run preview -- --report
+# 预览发布环境效果 + 静态资源分析
+yarn preview --report
 
-# code format check
-npm run lint
+# 代码格式检查
+yarn lint
 
-# code format check and auto fix
-npm run lint -- --fix
+# 代码格式检查并自动修复
+yarn lint --fix
 ```
-
-Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
-
-## Demo
-
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
-
-## Extra
-
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-For `typescript` version, you can use [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-
-## Related Project
-
-- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-- [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-
-- [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
-
-- [awesome-project](https://github.com/PanJiaChen/vue-element-admin/issues/2312)
-
 ## Browsers support
 
 Modern browsers and Internet Explorer 10+.
@@ -92,8 +46,4 @@ Modern browsers and Internet Explorer 10+.
 | --------- | --------- | --------- | --------- |
 | IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
 
-## License
 
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
-
-Copyright (c) 2017-present PanJiaChen
