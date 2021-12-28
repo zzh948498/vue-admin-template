@@ -10,7 +10,7 @@ export default {
             if (this.device === 'mobile' && this.sidebar.opened) {
                 store.dispatch('app/closeSideBar', { withoutAnimation: false });
             }
-        }
+        },
     },
     beforeMount() {
         window.addEventListener('resize', this.__resizeHandler);
@@ -19,15 +19,15 @@ export default {
         window.removeEventListener('resize', this.__resizeHandler);
     },
     mounted() {
-        const isMobile = this.$_isMobile();
+        const isMobile = this.__isMobile();
         if (isMobile) {
             store.dispatch('app/toggleDevice', 'mobile');
             store.dispatch('app/closeSideBar', { withoutAnimation: true });
         }
     },
     methods: {
-    // use $_ for mixins properties
-    // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
+        // use $_ for mixins properties
+        // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
         __isMobile() {
             const rect = body.getBoundingClientRect();
             return rect.width - 1 < WIDTH;
@@ -41,6 +41,6 @@ export default {
                     store.dispatch('app/closeSideBar', { withoutAnimation: true });
                 }
             }
-        }
-    }
+        },
+    },
 };

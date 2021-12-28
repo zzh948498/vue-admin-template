@@ -88,8 +88,14 @@ export const constantRoutes = [
                 meta: { title: 'Form', icon: 'form' }
             }
         ]
-    },
+    }
+];
 
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
     {
         path: '/nested',
         component: Layout,
@@ -143,14 +149,13 @@ export const constantRoutes = [
             {
                 path: 'menu2',
                 component: () => import('@/views/nested/menu2/index'),
-                name: 'Menu2',
                 meta: { title: 'menu2' }
             }
         ]
     },
 
     {
-        path: 'external-link',
+        path: '/external-link',
         component: Layout,
         children: [
             {
