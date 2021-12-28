@@ -51,8 +51,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
-  @import "~@/styles/variables.scss";
+  @import "@/styles/mixin.scss";
+  // @import "@/styles/variables.scss";
+$sideBarWidth: 210px;
 
   .app-wrapper {
     @include clearfix;
