@@ -1,5 +1,5 @@
 # admin-vue
-总管理后台 支持vite，webpack，分别在这些分支里
+总管理后台 支持vite，webpack，分别在这些分支里, 默认vite
 
 fork 于 [https://github.com/PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
 ## Build Setup
