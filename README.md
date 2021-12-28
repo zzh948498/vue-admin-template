@@ -1,5 +1,7 @@
-# zoneyet-admin-vue
-总管理后台
+# admin-vue
+总管理后台 支持vite，webpack，分别在这些分支里
+
+fork 于 (https://github.com/PanJiaChen/vue-admin-template)[https://github.com/PanJiaChen/vue-admin-template]
 ## Build Setup
 
 ```bash
@@ -28,9 +30,6 @@ yarn build:prod
 ```bash
 # 预览发布环境效果
 yarn preview
-
-# 预览发布环境效果 + 静态资源分析
-yarn preview --report
 
 # 代码格式检查
 yarn lint
