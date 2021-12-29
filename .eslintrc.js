@@ -1,8 +1,11 @@
 module.exports = {
     root: true,
     parserOptions: {
-        parser: 'babel-eslint',
+        ecmaVersion: 'latest',
         sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true,
+        },
     },
     env: {
         browser: true,
@@ -15,6 +18,7 @@ module.exports = {
         'plugin:vue/strongly-recommended',
         'plugin:vue/recommended',
         'eslint:recommended',
+        'prettier',
     ],
 
     // add your custom rules here
@@ -49,16 +53,7 @@ module.exports = {
         'vue/max-attributes-per-line': 0,
         'vue/singleline-html-element-content-newline': 0,
         'vue/attribute-hyphenation': 0,
-        'vue/html-indent': [
-            'error',
-            4,
-            {
-                attribute: 1,
-                baseIndent: 1,
-                closeBracket: 0,
-                alignAttributesVertically: true,
-                ignores: [],
-            },
-        ],
+        'vue/multi-word-component-names': 0,
+        'vue/html-indent': ['error', 4],
     },
 };
