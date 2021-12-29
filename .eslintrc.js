@@ -12,6 +12,7 @@ module.exports = {
         node: true,
         es6: true,
     },
+    // https://eslint.vuejs.org/
     extends: [
         'plugin:vue/base',
         'plugin:vue/essential',
@@ -22,7 +23,6 @@ module.exports = {
     ],
 
     // add your custom rules here
-    //it is base on https://github.com/vuejs/eslint-config-vue
     rules: {
         // override/add rules settings here, such as:
         // 'vue/no-unused-vars': 'error'
