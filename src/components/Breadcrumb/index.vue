@@ -56,19 +56,10 @@ export default {
             // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
             const { params } = this.$route;
             let toPath = compile(path);
-            console.log({
-                params,
-                toPath: toPath(params),
-            });
             return toPath(params);
         },
         handleLink(item) {
             const { redirect, path } = item;
-            console.log({
-                redirect,
-                path,
-                currentRoute: this.$router.currentRoute.path,
-            });
             if (redirect) {
                 if (this.$router.currentRoute.path === redirect) {
                     return console.log('已是当前页');

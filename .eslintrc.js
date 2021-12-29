@@ -29,7 +29,7 @@ module.exports = {
         eqeqeq: ['error', 'always', { null: 'ignore' }],
         'no-var': 2,
         'no-console': 0,
-        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        'no-debugger': 0,
         'no-new-wrappers': 2, // 禁止new String() 等等
         'no-duplicate-imports': 1, // 禁止重复imports
         'no-multiple-empty-lines': [
