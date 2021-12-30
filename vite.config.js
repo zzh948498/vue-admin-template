@@ -1,14 +1,25 @@
-import { createVuePlugin } from 'vite-plugin-vue2';
 import { viteMockServe } from 'vite-plugin-mock';
 import viteSvgIcons from 'vite-plugin-svg-icons';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
 import path from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 export default ({ command }) => {
     let prodMock = false;
     return defineConfig({
         plugins: [
-            createVuePlugin({
-                jsx: true,
+            vue(),
+            vueJsx({
+                // options are passed on to @vue/babel-plugin-jsx
+            }),
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+            }),
+            Components({
+                resolvers: [ElementPlusResolver()],
             }),
             // 添加下面插件
             viteSvgIcons({

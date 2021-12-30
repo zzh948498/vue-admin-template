@@ -1,7 +1,4 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-
-Vue.use(Router);
+import { createRouter as vueCreateRouter, createWebHashHistory } from 'vue-router';
 
 /* Layout */
 import Layout from '@/layout/index.vue';
@@ -33,25 +30,27 @@ export const constantRoutes = [
     {
         path: '/login',
         component: () => import('@/views/login/index.vue'),
-        hidden: true
+        hidden: true,
     },
 
     {
         path: '/404',
         component: () => import('@/views/404.vue'),
-        hidden: true
+        hidden: true,
     },
 
     {
         path: '/',
         component: Layout,
         redirect: '/dashboard',
-        children: [{
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: () => import('@/views/dashboard/index.vue'),
-            meta: { title: 'Dashboard', icon: 'dashboard' }
-        }]
+        children: [
+            {
+                path: 'dashboard',
+                name: 'Dashboard',
+                component: () => import('@/views/dashboard/index.vue'),
+                meta: { title: 'Dashboard', icon: 'dashboard' },
+            },
+        ],
     },
 
     {
@@ -59,21 +58,22 @@ export const constantRoutes = [
         component: Layout,
         redirect: '/example/table',
         name: 'Example',
-        meta: { title: 'Example', icon: 'el-icon-s-help' },
+        //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
+        meta: { title: 'Example', elSvgIcon: 'helpFilled' },
         children: [
             {
                 path: 'table',
                 name: 'Table',
                 component: () => import('@/views/table/index.vue'),
-                meta: { title: 'Table', icon: 'table' }
+                meta: { title: 'Table', icon: 'table' },
             },
             {
                 path: 'tree',
                 name: 'Tree',
                 component: () => import('@/views/tree/index.vue'),
-                meta: { title: 'Tree', icon: 'tree' }
-            }
-        ]
+                meta: { title: 'Tree', icon: 'tree' },
+            },
+        ],
     },
 
     {
@@ -84,10 +84,10 @@ export const constantRoutes = [
                 path: 'index',
                 name: 'Form',
                 component: () => import('@/views/form/index.vue'),
-                meta: { title: 'Form', icon: 'form' }
-            }
-        ]
-    }
+                meta: { title: 'Form', icon: 'form' },
+            },
+        ],
+    },
 ];
 
 /**
@@ -102,7 +102,7 @@ export const asyncRoutes = [
         name: 'Nested',
         meta: {
             title: 'Nested',
-            icon: 'nested'
+            icon: 'nested',
         },
         children: [
             {
@@ -115,7 +115,7 @@ export const asyncRoutes = [
                         path: 'menu1-1',
                         component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
                         name: 'Menu1-1',
-                        meta: { title: 'Menu1-1' }
+                        meta: { title: 'Menu1-1' },
                     },
                     {
                         path: 'menu1-2',
@@ -127,30 +127,30 @@ export const asyncRoutes = [
                                 path: 'menu1-2-1',
                                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                                 name: 'Menu1-2-1',
-                                meta: { title: 'Menu1-2-1' }
+                                meta: { title: 'Menu1-2-1' },
                             },
                             {
                                 path: 'menu1-2-2',
                                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
                                 name: 'Menu1-2-2',
-                                meta: { title: 'Menu1-2-2' }
-                            }
-                        ]
+                                meta: { title: 'Menu1-2-2' },
+                            },
+                        ],
                     },
                     {
                         path: 'menu1-3',
                         component: () => import('@/views/nested/menu1/menu1-3/index.vue'),
                         name: 'Menu1-3',
-                        meta: { title: 'Menu1-3' }
-                    }
-                ]
+                        meta: { title: 'Menu1-3' },
+                    },
+                ],
             },
             {
                 path: 'menu2',
                 component: () => import('@/views/nested/menu2/index.vue'),
-                meta: { title: 'menu2' }
-            }
-        ]
+                meta: { title: 'menu2' },
+            },
+        ],
     },
 
     {
@@ -159,20 +159,23 @@ export const asyncRoutes = [
         children: [
             {
                 path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-                meta: { title: 'External Link', icon: 'link' }
-            }
-        ]
+                meta: { title: 'External Link', icon: 'link' },
+            },
+        ],
     },
 
     // 404 page must be placed at the end !!!
-    { path: '*', redirect: '/404', hidden: true }
+    // using pathMatch install of "*" in vue-router 4.0
+    { path: '/:pathMatch(.*)', redirect: '/404', hidden: true },
 ];
 
-const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-});
+const createRouter = () =>
+    vueCreateRouter({
+        // mode: 'history', // require service support
+        scrollBehavior: () => ({ top: 0 }),
+        history: createWebHashHistory(),
+        routes: constantRoutes,
+    });
 
 const router = createRouter();
 

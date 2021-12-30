@@ -1,16 +1,33 @@
 <template>
     <div v-if="!item.hidden">
-        <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
+        <template
+            v-if="
+                hasOneShowingChild(item.children, item) &&
+                    (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+                    !item.alwaysShow
+            "
+        >
             <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-                <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-                    <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+                <el-menu-item
+                    :index="resolvePath(onlyOneChild.path)"
+                    :class="{ 'submenu-title-noDropdown': !isNest }"
+                >
+                    <item
+                        :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+                        :title="onlyOneChild.meta.title"
+                    />
                 </el-menu-item>
             </app-link>
         </template>
 
-        <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
-            <template slot="title">
-                <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+        <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+            <template #title>
+                <item
+                    v-if="item.meta"
+                    :elSvgIcon="item.meta && item.meta.elSvgIcon"
+                    :icon="item.meta && item.meta.icon"
+                    :title="item.meta.title"
+                />
             </template>
             <sidebar-item
                 v-for="child in item.children"
@@ -20,7 +37,7 @@
                 :base-path="resolvePath(child.path)"
                 class="nest-menu"
             />
-        </el-submenu>
+        </el-sub-menu>
     </div>
 </template>
 
@@ -30,29 +47,28 @@ import { isExternal } from '@/utils/validate';
 import Item from './Item.vue';
 import AppLink from './Link.vue';
 import FixiOSBug from './FixiOSBug';
-
 export default {
     name: 'SidebarItem',
     components: { Item, AppLink },
     mixins: [FixiOSBug],
     props: {
-    // route object
+        // route object
         item: {
             type: Object,
-            required: true
+            required: true,
         },
         isNest: {
             type: Boolean,
-            default: false
+            default: false,
         },
         basePath: {
             type: String,
-            default: ''
-        }
+            default: '',
+        },
     },
     data() {
-    // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
-    // TODO: refactor with render function
+        // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
+        // TODO: refactor with render function
         this.onlyOneChild = null;
         return {};
     },
@@ -75,7 +91,7 @@ export default {
 
             // Show parent if there are no child router to display
             if (showingChildren.length === 0) {
-                this.onlyOneChild = { ... parent, path: '', noShowingChildren: true };
+                this.onlyOneChild = { ...parent, path: '', noShowingChildren: true };
                 return true;
             }
 
@@ -89,7 +105,7 @@ export default {
                 return this.basePath;
             }
             return path.resolve(this.basePath, routePath);
-        }
-    }
+        },
+    },
 };
 </script>

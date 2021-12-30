@@ -1,41 +1,50 @@
 <script lang="jsx">
+// import { h } from 'vue';
+import ElSvgItem from './ElSvgItem.vue'
+
 export default {
     name: 'MenuItem',
     functional: true,
     props: {
         icon: {
             type: String,
-            default: ''
+            default: '',
         },
         title: {
             type: String,
-            default: ''
-        }
+            default: '',
+        },
+        elSvgIcon: {
+            type: String,
+            default: '',
+        },
     },
-    render(h, context) {
-        const { icon, title } = context.props;
+    // render(h, context) {
+    render(context) {
+        const { icon, title, elSvgIcon } = context;
         const vnodes = [];
-
-        if (icon) {
-            if (icon.includes('el-icon')) {
-                vnodes.push(<i class={[icon, 'sub-el-icon']} />);
-            } else {
-                vnodes.push(<svg-icon icon-class={icon}/>);
-            }
+        if (elSvgIcon) {
+            // h('el-icon','bicycle')
+            // const elIcon = 'bicycle';
+            // vnodes.push(h('el-icon', {}, [h('bicycle')]));
+            vnodes.push(<ElSvgItem elSvgName={elSvgIcon} />);
+            // elIcon.innerHTML
+            // console.log(elIcon.nodeValue);
+        } else if (icon) {
+            vnodes.push(<svg-icon icon-class={icon} />);
         }
-
         if (title) {
-            vnodes.push(<span slot='title'>{(title)}</span>);
+            vnodes.push(<span slot="title">{title}</span>);
         }
         return vnodes;
-    }
+    },
 };
 </script>
 
 <style scoped>
 .sub-el-icon {
-  color: currentColor;
-  width: 1em;
-  height: 1em;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
 }
 </style>

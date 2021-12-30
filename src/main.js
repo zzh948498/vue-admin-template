@@ -1,39 +1,27 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
-
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-// import locale from 'element-ui/lib/locale/lang/en'; // lang i18n
-
+import SvgIcon from '@/components/SvgIcon/index.vue'; // svg component
+import ElementPlus from 'element-plus';
+import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import 'element-plus/dist/index.css';
 import '@/styles/index.scss'; // global css
 
 import App from './App.vue';
 import store from './store';
 import router from './router';
-
+import { HelpFilled, CaretBottom } from '@element-plus/icons-vue';
 import '@/icons'; // icon
 import '@/permission'; // permission control
+const app = createApp(App);
+app.config.globalProperties.productionTip = false;
+app.component('SvgIcon', SvgIcon);
+app.component('HelpFilled', HelpFilled);
+app.component('CaretBottom', CaretBottom);
 
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
-
-// set ElementUI lang to EN
-// Vue.use(ElementUI, { locale });
-// 如果想要中文版 element-ui，按如下方式声明
-Vue.use(ElementUI);
-
-Vue.config.productionTip = false;
-
-new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(App),
+app.use(ElementPlus, {
+    locale: zhCn,
 });
+app.use(router);
+app.use(store);
+app.mount('#app');

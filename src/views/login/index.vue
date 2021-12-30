@@ -127,7 +127,7 @@ export default {
                             this.loading = false;
                             // catch todo
                             // https://stackoverflow.com/questions/62223195/vue-router-uncaught-in-promise-error-redirected-from-login-to-via-a
-                            this.$router.push({ path: this.redirect || '/' }).catch(() => ({}));
+                            this.$router.push({ path: this.redirect || '/' });
                         })
                         .catch(() => {
                             this.loading = false;
