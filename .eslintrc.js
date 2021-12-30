@@ -55,5 +55,6 @@ module.exports = {
         'vue/attribute-hyphenation': 0,
         'vue/multi-word-component-names': 0,
         'vue/html-indent': ['error', 4],
+        'vue/v-on-event-hyphenation': [2, 'never'],
     },
 };
