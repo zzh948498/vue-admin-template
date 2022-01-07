@@ -54,6 +54,6 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 0,
         'vue/attribute-hyphenation': 0,
         'vue/multi-word-component-names': 0,
-        'vue/html-indent': ['error', 4],
+        // 'vue/html-indent': ['error', 4],
     },
 };
