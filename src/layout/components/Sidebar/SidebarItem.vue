@@ -7,27 +7,21 @@
                     !item.alwaysShow
             "
         >
-            <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+            <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
                 <el-menu-item
                     :index="resolvePath(onlyOneChild.path)"
                     :class="{ 'submenu-title-noDropdown': !isNest }"
                 >
-                    <item
-                        :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-                        :title="onlyOneChild.meta.title"
-                    />
+                    <Item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
+                    <template #title>{{ onlyOneChild.meta?.title }}</template>
                 </el-menu-item>
-            </app-link>
+            </AppLink>
         </template>
 
         <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
-            <template #title>
-                <item
-                    v-if="item.meta"
-                    :elSvgIcon="item.meta && item.meta.elSvgIcon"
-                    :icon="item.meta && item.meta.icon"
-                    :title="item.meta.title"
-                />
+            <template v-if="item.meta" #title>
+                <Item :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
+                <span>{{ item.meta.title }}</span>
             </template>
             <sidebar-item
                 v-for="child in item.children"

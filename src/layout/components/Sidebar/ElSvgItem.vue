@@ -1,19 +1,17 @@
+<script setup>
+defineProps({
+    elSvgName: {
+        require: true,
+        default: 'Fold',
+        type: String,
+    },
+});
+</script>
 <template>
     <el-icon class="el-svg-icon">
         <component :is="elSvgName" />
     </el-icon>
 </template>
-<script>
-export default {
-    props: {
-        elSvgName: {
-            require: true,
-            default: 'Fold',
-            type: String,
-        },
-    },
-};
-</script>
 
 <style scoped lang="scss">
 .el-svg-icon {

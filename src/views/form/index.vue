@@ -1,3 +1,26 @@
+<script setup>
+import { reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+const form = reactive({
+    name: '',
+    region: '',
+    date1: '',
+    date2: '',
+    delivery: false,
+    type: [],
+    resource: '',
+    desc: '',
+});
+const onSubmit = () => {
+    ElMessage('submit!');
+};
+const onCancel = () => {
+    ElMessage({
+        message: 'cancel!',
+        type: 'warning',
+    });
+};
+</script>
 <template>
     <div class="app-container">
         <el-form ref="form1" :model="form" label-width="120px">
@@ -56,37 +79,6 @@
         </el-form>
     </div>
 </template>
-<script>
-import { defineComponent, ref } from 'vue';
-export default defineComponent({
-    setup() {
-        const form = ref({
-            name: '',
-            region: '',
-            date1: '',
-            date2: '',
-            delivery: false,
-            type: [],
-            resource: '',
-            desc: '',
-        });
-        const onSubmit = () => {
-            this.$message('submit!');
-        };
-        const onCancel = () => {
-            this.$message({
-                message: 'cancel!',
-                type: 'warning',
-            });
-        };
-        return {
-            form,
-            onSubmit,
-            onCancel,
-        };
-    },
-});
-</script>
 <style scoped>
 .line {
     text-align: center;

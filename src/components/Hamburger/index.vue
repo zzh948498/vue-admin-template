@@ -1,3 +1,13 @@
+<script setup>
+defineProps({
+    isActive: {
+        type: Boolean,
+        default: false,
+    },
+});
+const emit = defineEmits(['toggleClick']);
+const toggleClick = () => emit('toggleClick');
+</script>
 <template>
     <div style="padding: 0 15px" @click="toggleClick">
         <svg
@@ -14,24 +24,6 @@
         </svg>
     </div>
 </template>
-
-<script>
-export default {
-    name: 'Hamburger',
-    props: {
-        isActive: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    methods: {
-        toggleClick() {
-            this.$emit('toggleClick');
-        },
-    },
-};
-</script>
-
 <style scoped>
 .hamburger {
     display: inline-block;

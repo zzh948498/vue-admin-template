@@ -1,3 +1,25 @@
+<script setup>
+import { ref } from 'vue';
+import { getList } from '@/api/table';
+
+const list = ref([]);
+const listLoading = ref(true);
+const fetchData = async () => {
+    listLoading.value = true;
+    const res = await getList();
+    list.value = res.data.items;
+    listLoading.value = false;
+};
+const statusFilter = status => {
+    const statusMap = {
+        published: 'success',
+        draft: 'warning',
+        deleted: 'danger',
+    };
+    return statusMap[status];
+};
+fetchData();
+</script>
 <template>
     <div class="app-container">
         <el-table
@@ -42,37 +64,3 @@
         </el-table>
     </div>
 </template>
-
-<script>
-import { getList } from '@/api/table';
-
-export default {
-    data() {
-        return {
-            list: null,
-            listLoading: true,
-        };
-    },
-    computed: {},
-    created() {
-        this.fetchData();
-    },
-    methods: {
-        statusFilter(status) {
-            const statusMap = {
-                published: 'success',
-                draft: 'warning',
-                deleted: 'danger',
-            };
-            return statusMap[status];
-        },
-        fetchData() {
-            this.listLoading = true;
-            getList().then(response => {
-                this.list = response.data.items;
-                this.listLoading = false;
-            });
-        },
-    },
-};
-</script>

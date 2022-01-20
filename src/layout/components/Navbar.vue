@@ -1,8 +1,8 @@
 <template>
     <div class="navbar">
-        <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+        <Hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-        <breadcrumb class="breadcrumb-container" />
+        <Breadcrumb class="breadcrumb-container" />
 
         <div class="right-menu">
             <el-dropdown class="avatar-container" trigger="click">
@@ -30,29 +30,21 @@
         </div>
     </div>
 </template>
-
-<script>
-import { mapGetters } from 'vuex';
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import Hamburger from '@/components/Hamburger/index.vue';
-
-export default {
-    components: {
-        Breadcrumb,
-        Hamburger,
-    },
-    computed: {
-        ...mapGetters(['sidebar', 'avatar']),
-    },
-    methods: {
-        toggleSideBar() {
-            this.$store.dispatch('app/toggleSideBar');
-        },
-        async logout() {
-            await this.$store.dispatch('user/logout');
-            this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-        },
-    },
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+const sidebar = computed(() => store.getters.sidebar);
+const avatar = computed(() => store.getters.avatar);
+const toggleSideBar = () => store.dispatch('app/toggleSideBar');
+const logout = async () => {
+    await store.dispatch('user/logout');
+    router.push(`/login?redirect=${route.fullPath}`);
 };
 </script>
 

@@ -1,7 +1,76 @@
+<script setup>
+import { validUsername } from '@/utils/validate';
+import { nextTick, reactive, ref, watch } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter, useRoute } from 'vue-router';
+const store = useStore();
+const router = useRouter();
+const route = useRoute();
+const validateUsername = (rule, value, callback) => {
+    if (!validUsername(value)) {
+        callback(new Error('Please enter the correct user name'));
+    } else {
+        callback();
+    }
+};
+const validatePassword = (rule, value, callback) => {
+    if (value.length < 6) {
+        callback(new Error('The password can not be less than 6 digits'));
+    } else {
+        callback();
+    }
+};
+const loginRules = reactive({
+    username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+    password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+});
+const loginForm = reactive({
+    username: 'admin',
+    password: '111111',
+});
+const loading = ref(false);
+const passwordType = ref('password');
+const redirect = ref(undefined);
+const passwordRef = ref(null);
+const showPwd = () => {
+    if (passwordType.value === 'password') {
+        passwordType.value = '';
+    } else {
+        passwordType.value = 'password';
+    }
+    nextTick(() => {
+        passwordRef.value.focus();
+    });
+};
+const loginFormRef = ref(null);
+const handleLogin = () => {
+    loginFormRef.value.validate(async valid => {
+        if (valid) {
+            loading.value = true;
+            await store.dispatch('user/login', loginForm);
+            loading.value = false;
+            // catch todo
+            router.push({ path: redirect.value || '/' });
+        } else {
+            console.log('error submit!!');
+            return false;
+        }
+    });
+};
+watch(
+    () => route.query,
+    query => {
+        redirect.value = query && query.redirect;
+    },
+    {
+        immediate: true,
+    }
+);
+</script>
 <template>
     <div class="login-container">
         <el-form
-            ref="loginForm"
+            ref="loginFormRef"
             :model="loginForm"
             :rules="loginRules"
             class="login-form"
@@ -33,14 +102,14 @@
                 </span>
                 <el-input
                     :key="passwordType"
-                    ref="password"
+                    ref="passwordRef"
                     v-model="loginForm.password"
                     :type="passwordType"
                     placeholder="Password"
                     name="password"
                     tabindex="2"
                     auto-complete="on"
-                    @keyup.enter.native="handleLogin"
+                    @keyup.enter="handleLogin"
                 />
                 <span class="show-pwd" @click="showPwd">
                     <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -51,7 +120,7 @@
                 :loading="loading"
                 type="primary"
                 style="width: 100%; margin-bottom: 30px"
-                @click.native.prevent="handleLogin"
+                @click.prevent="handleLogin"
             >
                 Login
             </el-button>
@@ -63,84 +132,6 @@
         </el-form>
     </div>
 </template>
-
-<script>
-import { validUsername } from '@/utils/validate';
-
-export default {
-    name: 'Login',
-    data() {
-        const validateUsername = (rule, value, callback) => {
-            if (!validUsername(value)) {
-                callback(new Error('Please enter the correct user name'));
-            } else {
-                callback();
-            }
-        };
-        const validatePassword = (rule, value, callback) => {
-            if (value.length < 6) {
-                callback(new Error('The password can not be less than 6 digits'));
-            } else {
-                callback();
-            }
-        };
-        return {
-            loginForm: {
-                username: 'admin',
-                password: '111111',
-            },
-            loginRules: {
-                username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-                password: [{ required: true, trigger: 'blur', validator: validatePassword }],
-            },
-            loading: false,
-            passwordType: 'password',
-            redirect: undefined,
-        };
-    },
-    watch: {
-        $route: {
-            handler: function (route) {
-                this.redirect = route.query && route.query.redirect;
-            },
-            immediate: true,
-        },
-    },
-    methods: {
-        showPwd() {
-            if (this.passwordType === 'password') {
-                this.passwordType = '';
-            } else {
-                this.passwordType = 'password';
-            }
-            this.$nextTick(() => {
-                this.$refs.password.focus();
-            });
-        },
-        handleLogin() {
-            this.$refs.loginForm.validate(valid => {
-                if (valid) {
-                    this.loading = true;
-                    this.$store
-                        .dispatch('user/login', this.loginForm)
-                        .then(() => {
-                            this.loading = false;
-                            // catch todo
-                            // https://stackoverflow.com/questions/62223195/vue-router-uncaught-in-promise-error-redirected-from-login-to-via-a
-                            this.$router.push({ path: this.redirect || '/' });
-                        })
-                        .catch(() => {
-                            this.loading = false;
-                        });
-                } else {
-                    console.log('error submit!!');
-                    return false;
-                }
-            });
-        },
-    },
-};
-</script>
 
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */

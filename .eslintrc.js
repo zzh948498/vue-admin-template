@@ -1,5 +1,9 @@
 module.exports = {
     root: true,
+    globals: {
+        defineProps: 'readonly',
+        defineEmits: 'readonly',
+    },
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',

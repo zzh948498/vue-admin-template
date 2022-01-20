@@ -1,3 +1,48 @@
+<script setup>
+import { compile } from 'path-to-regexp';
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+const route = useRoute();
+const router = useRouter();
+const levelList = ref(null);
+const getBreadcrumb = () => {
+    // only show routes with meta.title
+    let matched = route.matched.filter(item => item.meta && item.meta.title);
+    const first = matched[0];
+
+    if (!isDashboard(first)) {
+        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched);
+    }
+
+    levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false);
+};
+const isDashboard = route => {
+    const name = route && route.name;
+    if (!name) {
+        return false;
+    }
+    return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase();
+};
+const pathCompile = path => {
+    // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
+    const { params } = route;
+    let toPath = compile(path);
+    return toPath(params);
+};
+const handleLink = item => {
+    const { redirect, path } = item;
+    if (redirect) {
+        if (router.currentRoute.path === redirect) {
+            return console.log('已是当前页');
+        }
+        return router.push(redirect);
+    }
+    router.push(pathCompile(path));
+};
+watch(route, () => getBreadcrumb());
+getBreadcrumb();
+</script>
+
 <template>
     <el-breadcrumb class="app-breadcrumb" separator="/">
         <transition-group name="breadcrumb">
@@ -13,64 +58,6 @@
         </transition-group>
     </el-breadcrumb>
 </template>
-
-<script>
-import { compile } from 'path-to-regexp';
-
-export default {
-    data() {
-        return {
-            levelList: null,
-        };
-    },
-    watch: {
-        $route() {
-            this.getBreadcrumb();
-        },
-    },
-    created() {
-        this.getBreadcrumb();
-    },
-    methods: {
-        getBreadcrumb() {
-            // only show routes with meta.title
-            let matched = this.$route.matched.filter(item => item.meta && item.meta.title);
-            const first = matched[0];
-
-            if (!this.isDashboard(first)) {
-                matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched);
-            }
-
-            this.levelList = matched.filter(
-                item => item.meta && item.meta.title && item.meta.breadcrumb !== false
-            );
-        },
-        isDashboard(route) {
-            const name = route && route.name;
-            if (!name) {
-                return false;
-            }
-            return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase();
-        },
-        pathCompile(path) {
-            // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
-            const { params } = this.$route;
-            let toPath = compile(path);
-            return toPath(params);
-        },
-        handleLink(item) {
-            const { redirect, path } = item;
-            if (redirect) {
-                if (this.$router.currentRoute.path === redirect) {
-                    return console.log('已是当前页');
-                }
-                return this.$router.push(redirect);
-            }
-            this.$router.push(this.pathCompile(path));
-        },
-    },
-};
-</script>
 
 <style lang="scss" scoped>
 .app-breadcrumb.el-breadcrumb {
