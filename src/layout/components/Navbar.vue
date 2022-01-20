@@ -1,3 +1,20 @@
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
+import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Hamburger from '@/components/Hamburger/index.vue';
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+const sidebar = computed(() => store.getters.sidebar);
+const avatar = computed(() => store.getters.avatar);
+const toggleSideBar = () => store.dispatch('app/toggleSideBar');
+const logout = async () => {
+    await store.dispatch('user/logout');
+    router.push(`/login?redirect=${route.fullPath}`);
+};
+</script>
 <template>
     <div class="navbar">
         <Hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
@@ -30,23 +47,7 @@
         </div>
     </div>
 </template>
-<script setup>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRoute, useRouter } from 'vue-router';
-import Breadcrumb from '@/components/Breadcrumb/index.vue';
-import Hamburger from '@/components/Hamburger/index.vue';
-const store = useStore();
-const route = useRoute();
-const router = useRouter();
-const sidebar = computed(() => store.getters.sidebar);
-const avatar = computed(() => store.getters.avatar);
-const toggleSideBar = () => store.dispatch('app/toggleSideBar');
-const logout = async () => {
-    await store.dispatch('user/logout');
-    router.push(`/login?redirect=${route.fullPath}`);
-};
-</script>
+
 
 <style lang="scss" scoped>
 .navbar {
