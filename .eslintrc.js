@@ -18,11 +18,11 @@ module.exports = {
     },
     // https://eslint.vuejs.org/
     extends: [
+        'eslint:recommended',
         'plugin:vue/base',
         'plugin:vue/vue3-essential',
         'plugin:vue/vue3-strongly-recommended',
         'plugin:vue/vue3-recommended',
-        'eslint:recommended',
         'prettier',
     ],
 
@@ -58,7 +58,8 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 0,
         'vue/attribute-hyphenation': 0,
         'vue/multi-word-component-names': 0,
-        'vue/html-indent': ['error', 4],
+        'vue/html-indent': 0,
         'vue/v-on-event-hyphenation': [2, 'never'],
+        // Enable vue/script-setup-uses-vars rule
     },
 };

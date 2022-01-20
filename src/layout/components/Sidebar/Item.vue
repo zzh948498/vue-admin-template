@@ -1,6 +1,6 @@
 <script lang="jsx">
 // import { h } from 'vue';
-import ElSvgItem from './ElSvgItem.vue'
+import ElSvgItem from './ElSvgItem.vue';
 
 export default {
     name: 'MenuItem',
