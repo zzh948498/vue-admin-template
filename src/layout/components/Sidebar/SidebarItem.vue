@@ -1,10 +1,10 @@
 <template>
-    <div v-if="!item.hidden">
-        <template
+    <template v-if="!item.hidden">
+        <li
             v-if="
                 hasOneShowingChild(item.children, item) &&
-                    (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-                    !item.alwaysShow
+                (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+                !item.alwaysShow
             "
         >
             <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
@@ -16,14 +16,15 @@
                     <template #title>{{ onlyOneChild.meta?.title }}</template>
                 </el-menu-item>
             </AppLink>
-        </template>
+        </li>
 
         <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
             <template v-if="item.meta" #title>
                 <Item :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
                 <span>{{ item.meta.title }}</span>
             </template>
-            <sidebar-item
+
+            <SidebarItem
                 v-for="child in item.children"
                 :key="child.path"
                 :is-nest="true"
@@ -32,7 +33,7 @@
                 class="nest-menu"
             />
         </el-sub-menu>
-    </div>
+    </template>
 </template>
 
 <script>

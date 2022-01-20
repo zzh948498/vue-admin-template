@@ -32,9 +32,11 @@ const styleExternalIcon = computed(() => ({
     <!-- <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-on="$listeners" />
     <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners"> -->
     <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" />
-    <svg v-else :class="svgClass" aria-hidden="true">
-        <use :xlink:href="iconName" />
-    </svg>
+    <i v-else >
+        <svg :class="svgClass" aria-hidden="true">
+            <use :xlink:href="iconName" />
+        </svg>
+    </i>
 </template>
 
 <style scoped lang="scss">

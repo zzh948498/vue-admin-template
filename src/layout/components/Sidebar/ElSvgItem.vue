@@ -15,11 +15,9 @@ defineProps({
 
 <style scoped lang="scss">
 .el-svg-icon {
-    width: 1em;
-    height: 1em;
-    margin-left: -2px; //el-svg-icon has some margin
-    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
     text-align: left !important;
-    margin-right: 16px;
+    margin-right: 14px !important;
 }
 </style>
