@@ -1,16 +1,17 @@
 # admin-vue
-总管理后台 支持vite，webpack，分别在这些分支里, 默认vite
+后台管理模板 vue2/vue3， 支持vite，webpack，分别在这些分支里, 默认分支vite + vue2
 
 fork 于 [https://github.com/PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
 ## Build Setup
 拉取本项目
+使用最先进的包管理工具pnpm
 ```bash
 
 # 安装依赖
-yarn
+pnpm i
 
 # 启动服务
-yarn dev
+pnpm dev
 ```
 
 浏览器访问 [http://localhost:3000](http://localhost:3000)
@@ -19,23 +20,23 @@ yarn dev
 
 ```bash
 # 构建测试环境
-yarn build:stage
+pnpm build:stage
 
 # 构建生产环境
-yarn build:prod
+pnpm build:prod
 ```
 
 ## 其它
 
 ```bash
 # 预览发布环境效果
-yarn preview
+pnpm preview
 
 # 代码格式检查
-yarn lint
+pnpm lint
 
 # 代码格式检查并自动修复
-yarn lint --fix
+pnpm lint --fix
 ```
 
 
