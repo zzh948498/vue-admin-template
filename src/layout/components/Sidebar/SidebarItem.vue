@@ -1,7 +1,7 @@
 <script setup>
 import path from 'path-browserify';
 import { isExternal } from '@/utils/validate';
-import Item from './Item.jsx';
+import IconItem from './Item.jsx';
 import AppLink from './Link.vue';
 import { useFixiOSBug } from './FixiOSBug';
 import { ref } from 'vue';
@@ -70,7 +70,7 @@ const resolvePath = routePath => {
                     :index="resolvePath(onlyOneChild.path)"
                     :class="{ 'submenu-title-noDropdown': !isNest }"
                 >
-                    <Item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
+                    <IconItem :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
                     <template #title>{{ onlyOneChild.meta?.title }}</template>
                 </el-menu-item>
             </AppLink>
@@ -78,7 +78,7 @@ const resolvePath = routePath => {
 
         <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
             <template v-if="item.meta" #title>
-                <Item :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
+                <IconItem :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
                 <span>{{ item.meta.title }}</span>
             </template>
 
