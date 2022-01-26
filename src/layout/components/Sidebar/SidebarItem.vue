@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import path from 'path-browserify';
 import { isExternal } from '@/utils/validate';
 import IconItem from './Item.jsx';

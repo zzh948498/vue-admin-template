@@ -17,8 +17,8 @@ export function parseTime(time, cFormat) {
     if (typeof time === 'object') {
         date = time;
     } else {
-        if ((typeof time === 'string')) {
-            if ((/^[0-9]+$/.test(time))) {
+        if (typeof time === 'string') {
+            if (/^[0-9]+$/.test(time)) {
                 // support "1548221490638"
                 time = parseInt(time);
             } else {
@@ -28,7 +28,7 @@ export function parseTime(time, cFormat) {
             }
         }
 
-        if ((typeof time === 'number') && (time.toString().length === 10)) {
+        if (typeof time === 'number' && time.toString().length === 10) {
             time = time * 1000;
         }
         date = new Date(time);
@@ -40,12 +40,14 @@ export function parseTime(time, cFormat) {
         h: date.getHours(),
         i: date.getMinutes(),
         s: date.getSeconds(),
-        a: date.getDay()
+        a: date.getDay(),
     };
     const timeStr = format.replace(/{([ymdhisa])+}/g, (result, key) => {
         const value = formatObj[key];
         // Note: getDay() returns 0 on Sunday
-        if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ]; }
+        if (key === 'a') {
+            return ['日', '一', '二', '三', '四', '五', '六'][value];
+        }
         return value.toString().padStart(2, '0');
     });
     return timeStr;
@@ -56,7 +58,7 @@ export function parseTime(time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime(time, option) {
+export function formatTime(time: number, option) {
     if (('' + time).length === 10) {
         time = parseInt(time) * 1000;
     } else {
@@ -70,7 +72,7 @@ export function formatTime(time, option) {
     if (diff < 30) {
         return '刚刚';
     } else if (diff < 3600) {
-    // less 1 hour
+        // less 1 hour
         return Math.ceil(diff / 60) + '分钟前';
     } else if (diff < 3600 * 24) {
         return Math.ceil(diff / 3600) + '小时前';
@@ -80,17 +82,7 @@ export function formatTime(time, option) {
     if (option) {
         return parseTime(time, option);
     } else {
-        return (
-            d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
-        );
+        return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分';
     }
 }
 

@@ -14,7 +14,7 @@ import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 import App from './App.vue';
-import store from './store';
+import store, { key } from './store';
 import router from './router';
 import '@/permission'; // permission control
 
@@ -31,5 +31,5 @@ app.use(ElementPlus, {
     locale: zhCn,
 });
 app.use(router);
-app.use(store);
+app.use(store, key);
 app.mount('#app');

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useResizeHandler } from './composables/ResizeHandler';
 import { Navbar, Sidebar, AppMain } from './components';
 const { sidebar: sidebarRef, device, fixedHeader, classObj, handleClickOutside } = useResizeHandler();

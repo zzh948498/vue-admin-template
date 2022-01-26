@@ -1,5 +1,5 @@
 // const Mock = require('mockjs');
-import Mock from 'mockjs'
+import Mock from 'mockjs';
 const data = Mock.mock({
     'items|10': [
         {

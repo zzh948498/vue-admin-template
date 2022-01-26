@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { validUsername } from '@/utils/validate';
 import { nextTick, reactive, ref, watch } from 'vue';
 import { useStore } from 'vuex';
@@ -86,13 +86,13 @@ watch(
                     <svg-icon icon-class="user" />
                 </span>
                 <el-input
-                    ref="username"
-                    v-model="loginForm.username"
-                    placeholder="Username"
                     name="username"
                     type="text"
                     tabindex="1"
                     auto-complete="on"
+                    ref="username"
+                    v-model="loginForm.username"
+                    placeholder="Username"
                 />
             </el-form-item>
 
@@ -117,10 +117,10 @@ watch(
             </el-form-item>
 
             <el-button
+                @click.prevent="handleLogin"
                 :loading="loading"
                 type="primary"
                 style="width: 100%; margin-bottom: 30px"
-                @click.prevent="handleLogin"
             >
                 Login
             </el-button>

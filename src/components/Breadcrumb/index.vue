@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { compile } from 'path-to-regexp';
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { isExternal as validateIsExternal } from '@/utils/validate';
 import { computed } from 'vue';
 

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch, reactive } from 'vue';
 const tree2 = ref(null);
 const filterText = ref('');

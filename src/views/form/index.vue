@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 const form = reactive({
