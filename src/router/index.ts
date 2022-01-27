@@ -1,8 +1,7 @@
-import { createRouter as vueCreateRouter, createWebHashHistory } from 'vue-router';
+import { createRouter as vueCreateRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 /* Layout */
 import Layout from '@/layout/index.vue';
-
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -26,17 +25,22 @@ import Layout from '@/layout/index.vue';
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
+
+export const constantRoutes: RouteRecordRaw[] = [
     {
         path: '/login',
         component: () => import('@/views/login/index.vue'),
-        hidden: true,
+        meta: {
+            hidden: true,
+        },
     },
 
     {
         path: '/404',
         component: () => import('@/views/404.vue'),
-        hidden: true,
+        meta: {
+            hidden: true,
+        },
     },
 
     {
@@ -94,7 +98,7 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
+export const asyncRoutes: RouteRecordRaw[] = [
     {
         path: '/nested',
         component: Layout,
@@ -158,6 +162,7 @@ export const asyncRoutes = [
         component: Layout,
         children: [
             {
+                redirect: '/external-link',
                 path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
                 meta: { title: 'External Link', icon: 'link' },
             },
@@ -166,7 +171,13 @@ export const asyncRoutes = [
 
     // 404 page must be placed at the end !!!
     // using pathMatch install of "*" in vue-router 4.0
-    { path: '/:pathMatch(.*)', redirect: '/404', hidden: true },
+    {
+        path: '/:pathMatch(.*)',
+        redirect: '/404',
+        meta: {
+            hidden: true,
+        },
+    },
 ];
 
 const createRouter = () =>

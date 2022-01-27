@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { validUsername } from '@/utils/validate';
 import { nextTick, reactive, ref, watch } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store';
 import { useRouter, useRoute } from 'vue-router';
 const store = useStore();
 const router = useRouter();

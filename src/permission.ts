@@ -8,14 +8,14 @@ import getPageTitle from '@/utils/get-page-title';
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login']; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
     // start progress bar
     NProgress.start();
 
     // set page title
-    document.title = getPageTitle(to.meta.title);
+    document.title = getPageTitle(to.meta.title as string);
 
     // determine whether the user has logged in
     const hasToken = getToken();
@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
             NProgress.done();
         } else {
             // determine whether the user has obtained his permission roles through getInfo
-            const hasRoles = store.getters.roles && store.getters.roles.length > 0;
+            const hasRoles = store.getters.user.roles && store.getters.user.roles.length > 0;
             if (hasRoles) {
                 next();
             } else {
@@ -51,7 +51,7 @@ router.beforeEach(async (to, from, next) => {
                     console.log(error);
                     // remove token and go to login page to re-login
                     await store.dispatch('user/resetToken');
-                    ElMessage.error(error?.message || 'Has Error');
+                    ElMessage.error((error as Error)?.message || 'Has Error');
                     next(`/login?redirect=${to.path}`);
                     NProgress.done();
                 }

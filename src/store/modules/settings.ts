@@ -1,32 +1,31 @@
 import defaultSettings from '@/settings';
+import { Module } from 'vuex';
+import type { RootState } from '../index';
 
-const { showSettings, fixedHeader, sidebarLogo } = defaultSettings;
+const { fixedHeader, sidebarLogo } = defaultSettings;
 
 const state = {
-    showSettings: showSettings,
     fixedHeader: fixedHeader,
-    sidebarLogo: sidebarLogo
+    sidebarLogo: sidebarLogo,
 };
-
-const mutations = {
-    CHANGE_SETTING: (state, { key, value }) => {
-    // eslint-disable-next-line no-prototype-builtins
-        if (state.hasOwnProperty(key)) {
-            state[key] = value;
-        }
-    }
-};
-
-const actions = {
-    changeSetting({ commit }, data) {
-        commit('CHANGE_SETTING', data);
-    }
-};
-
-export default {
+export type SettingState = typeof state;
+type SettingChangeInput<T extends keyof SettingState = keyof SettingState> = T extends T
+    ? [{ key: T; value: SettingState[T] }] extends Array<infer R>
+        ? R
+        : never
+    : never;
+const settingModule: Module<SettingState, RootState> = {
     namespaced: true,
     state,
-    mutations,
-    actions
+    mutations: {
+        CHANGE_SETTING: (state, data: SettingChangeInput) => {
+            Reflect.set(state, data.key, data.value);
+        },
+    },
+    actions: {
+        changeSetting({ commit }, data: SettingChangeInput) {
+            commit('CHANGE_SETTING', data);
+        },
+    },
 };
-
+export default settingModule;

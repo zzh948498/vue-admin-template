@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store';
 import { useRoute, useRouter } from 'vue-router';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import Hamburger from '@/components/Hamburger/index.vue';
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
-const sidebar = computed(() => store.getters.sidebar);
-const avatar = computed(() => store.getters.avatar);
+const sidebar = computed(() => store.getters.app.sidebar);
+const avatar = computed(() => store.getters.user.avatar);
 const toggleSideBar = () => store.dispatch('app/toggleSideBar');
 const logout = async () => {
     await store.dispatch('user/logout');

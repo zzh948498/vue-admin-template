@@ -1,14 +1,17 @@
 import { asyncRoutes, constantRoutes } from '@/router';
-import { RouteLocationNormalized } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router';
+import { Module } from 'vuex';
+import type { RootState } from '../index';
 
 /**
  * Use meta.role to determine if the current user has permission
  * @param roles
  * @param route
  */
-function hasPermission(roles, route) {
+function hasPermission(roles: string[], route: RouteRecordRaw) {
     if (route.meta && route.meta.roles) {
-        return roles.some(role => route.meta.roles.includes(role));
+        const metaRoles = route.meta.roles as string[];
+        return roles.some(role => metaRoles.includes(role));
     } else {
         return true;
     }
@@ -19,8 +22,8 @@ function hasPermission(roles, route) {
  * @param routes asyncRoutes
  * @param roles
  */
-export function filterAsyncRoutes(routes, roles) {
-    const res = [];
+export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
+    const res: RouteRecordRaw[] = [];
 
     routes.forEach(route => {
         const tmp = { ...route };
@@ -39,32 +42,37 @@ const state = {
     routes: [],
     addRoutes: [],
 };
+export interface PermissionState {
+    routes: RouteRecordRaw[];
+    addRoutes: RouteRecordRaw[];
+}
 
-const mutations = {
-    SET_ROUTES: (state, routes) => {
-        state.addRoutes = routes;
-        state.routes = constantRoutes.concat(routes);
-    },
-};
-
-const actions = {
-    generateRoutes({ commit }, roles) {
-        return new Promise(resolve => {
-            let accessedRoutes;
-            if (roles.includes('admin')) {
-                accessedRoutes = asyncRoutes || [];
-            } else {
-                accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-            }
-            commit('SET_ROUTES', accessedRoutes);
-            resolve(accessedRoutes);
-        });
-    },
-};
-
-export default {
+const PermissionModule: Module<PermissionState, RootState> = {
     namespaced: true,
     state,
-    mutations,
-    actions,
+    getters: {
+        permissionRoutes: state => state.routes,
+    },
+    mutations: {
+        SET_ROUTES: (state, routes) => {
+            state.addRoutes = routes;
+            state.routes = constantRoutes.concat(routes);
+        },
+    },
+    actions: {
+        generateRoutes({ commit }, roles) {
+            return new Promise(resolve => {
+                let accessedRoutes: RouteRecordRaw[];
+                if (roles.includes('admin')) {
+                    accessedRoutes = asyncRoutes || [];
+                } else {
+                    accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+                }
+                commit('SET_ROUTES', accessedRoutes);
+                resolve(accessedRoutes);
+            });
+        },
+    },
 };
+
+export default PermissionModule;

@@ -13,6 +13,10 @@ export type AppState = typeof state;
 const appModule: Module<AppState, RootState> = {
     namespaced: true,
     state,
+    getters: {
+        sidebar: state => state.sidebar,
+        device: state => state.device,
+    },
     mutations: {
         TOGGLE_SIDEBAR: state => {
             state.sidebar.opened = !state.sidebar.opened;

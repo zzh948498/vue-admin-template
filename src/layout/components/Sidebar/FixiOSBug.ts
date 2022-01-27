@@ -1,5 +1,5 @@
 import { computed, onMounted, ref } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store';
 
 export const useFixiOSBug = () => {
     const store = useStore();
