@@ -1,9 +1,31 @@
-<script setup lang="ts">
-import { ref, watch, reactive } from 'vue';
-const tree2 = ref(null);
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+import type { ElTree } from 'element-plus';
+
+interface Tree {
+    id: number;
+    label: string;
+    children?: Tree[];
+}
+
 const filterText = ref('');
-const defaultProps = reactive({ children: 'children', label: 'label' });
-const data2 = ref([
+const treeRef = ref<InstanceType<typeof ElTree>>();
+
+const defaultProps = {
+    children: 'children',
+    label: 'label',
+};
+
+watch(filterText, val => {
+    treeRef.value?.filter(val);
+});
+
+const filterNode = (value: string, data: Tree) => {
+    if (!value) return true;
+    return data.label.indexOf(value) !== -1;
+};
+
+const data: Tree[] = [
     {
         id: 1,
         label: 'Level one 1',
@@ -52,26 +74,17 @@ const data2 = ref([
             },
         ],
     },
-]);
-watch(filterText, val => {
-    tree2.value.filter(val);
-});
-const filterNode = (value, data) => {
-    if (!value) return true;
-    return data.label.indexOf(value) !== -1;
-};
+];
 </script>
 <template>
-    <div class="app-container">
-        <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom: 30px" />
+    <el-input v-model="filterText" placeholder="Filter keyword" />
 
-        <el-tree
-            ref="tree2"
-            :data="data2"
-            :props="defaultProps"
-            :filter-node-method="filterNode"
-            class="filter-tree"
-            default-expand-all
-        />
-    </div>
+    <el-tree
+        ref="treeRef"
+        class="filter-tree"
+        :data="data"
+        :props="defaultProps"
+        default-expand-all
+        :filter-node-method="filterNode"
+    />
 </template>

@@ -25,7 +25,14 @@ import Layout from '@/layout/index.vue';
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-
+declare module 'vue-router' {
+    interface RouteMeta {
+        hidden?: boolean;
+        title?: string;
+        icon?: string;
+        elSvgIcon?: string;
+    }
+}
 export const constantRoutes: RouteRecordRaw[] = [
     {
         path: '/login',
@@ -193,7 +200,7 @@ const router = createRouter();
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
     const newRouter = createRouter();
-    router.matcher = newRouter.matcher; // reset router
+    // router.matcher = newRouter.matcher; // reset router
 }
 
 export default router;

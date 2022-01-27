@@ -3,17 +3,18 @@ import { validUsername } from '@/utils/validate';
 import { nextTick, reactive, ref, watch } from 'vue';
 import { useStore } from '@/store';
 import { useRouter, useRoute } from 'vue-router';
+import { ElForm, ElInput } from 'element-plus';
 const store = useStore();
 const router = useRouter();
 const route = useRoute();
-const validateUsername = (rule, value, callback) => {
+const validateUsername = (rule: any, value: any, callback: any) => {
     if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'));
     } else {
         callback();
     }
 };
-const validatePassword = (rule, value, callback) => {
+const validatePassword = (rule: any, value: any, callback: any) => {
     if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'));
     } else {
@@ -30,8 +31,8 @@ const loginForm = reactive({
 });
 const loading = ref(false);
 const passwordType = ref('password');
-const redirect = ref(undefined);
-const passwordRef = ref(null);
+const redirect = ref();
+const passwordRef = ref<InstanceType<typeof ElInput>>();
 const showPwd = () => {
     if (passwordType.value === 'password') {
         passwordType.value = '';
@@ -39,12 +40,12 @@ const showPwd = () => {
         passwordType.value = 'password';
     }
     nextTick(() => {
-        passwordRef.value.focus();
+        passwordRef.value?.focus();
     });
 };
-const loginFormRef = ref(null);
+const loginFormRef = ref<InstanceType<typeof ElForm>>();
 const handleLogin = () => {
-    loginFormRef.value.validate(async valid => {
+    loginFormRef.value?.validate(async valid => {
         if (valid) {
             loading.value = true;
             await store.dispatch('user/login', loginForm);

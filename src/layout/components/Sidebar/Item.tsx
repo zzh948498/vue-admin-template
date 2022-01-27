@@ -26,7 +26,7 @@ export default defineComponent({
                         return <svg-icon icon-class={props.icon} />;
                     }
                 })()}
-                {props.title && <span slot="title">{props.title}</span>}
+                {props.title && <span>{props.title}</span>}
             </>
         );
     },

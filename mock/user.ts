@@ -27,9 +27,9 @@ export default [
     {
         url: '/vue-admin-template/user/login',
         type: 'post',
-        response: config => {
+        response: (config: any) => {
             const { username } = config.body;
-            const token = tokens[username];
+            const token = Reflect.get(tokens, username);
 
             // mock error
             if (!token) {
@@ -50,9 +50,9 @@ export default [
     {
         url: '/vue-admin-template/user/info',
         type: 'get',
-        response: config => {
+        response: (config: any) => {
             const { token } = config.query;
-            const info = users[token];
+            const info = Reflect.get(users, token);
 
             // mock error
             if (!info) {

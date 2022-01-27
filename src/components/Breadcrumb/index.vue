@@ -1,41 +1,42 @@
 <script setup lang="ts">
 import { compile } from 'path-to-regexp';
 import { ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { RouteLocationMatched, RouteRecordRedirectOption, useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
-const levelList = ref(null);
+const levelList = ref<RouteLocationMatched[]>([]);
 const getBreadcrumb = () => {
     // only show routes with meta.title
-    let matched = route.matched.filter(item => item.meta && item.meta.title);
+    const matched = route.matched.filter(item => item.meta && item.meta.title);
     const first = matched[0];
 
     if (!isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched);
+        matched.unshift({ path: '/dashboard', meta: { title: 'Dashboard' } } as any);
+        // matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched);
     }
 
     levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false);
 };
-const isDashboard = route => {
+const isDashboard = (route: RouteLocationMatched) => {
     const name = route && route.name;
     if (!name) {
         return false;
     }
-    return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase();
+    return name.toString().trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase();
 };
-const pathCompile = path => {
+const pathCompile = (path: RouteRecordRedirectOption) => {
     // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
     const { params } = route;
-    let toPath = compile(path);
+    let toPath = compile(path.toString());
     return toPath(params);
 };
-const handleLink = item => {
+const handleLink = (item: RouteLocationMatched) => {
     const { redirect, path } = item;
     if (redirect) {
-        if (router.currentRoute.path === redirect) {
+        if (router.currentRoute.value.path === redirect) {
             return console.log('已是当前页');
         }
-        return router.push(redirect);
+        return router.push(redirect.toString());
     }
     router.push(pathCompile(path));
 };

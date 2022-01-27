@@ -10,13 +10,13 @@ const fetchData = async () => {
     list.value = res.data.items;
     listLoading.value = false;
 };
-const statusFilter = status => {
+const statusFilter = (status: string): string => {
     const statusMap = {
         published: 'success',
         draft: 'warning',
         deleted: 'danger',
     };
-    return statusMap[status];
+    return Reflect.get(statusMap, status);
 };
 fetchData();
 </script>

@@ -4,7 +4,7 @@ import { useStore } from '@/store';
 export const useFixiOSBug = () => {
     const store = useStore();
     const device = computed(() => store.state.app.device);
-    const subMenu = ref(null);
+    const subMenu = ref();
     onMounted(() => {
         // In order to fix the click on menu on the ios device will trigger the mouseleave bug
         // https://github.com/PanJiaChen/vue-element-admin/issues/1135
@@ -13,8 +13,8 @@ export const useFixiOSBug = () => {
     const fixBugIniOS = () => {
         const $subMenu = subMenu;
         if ($subMenu) {
-            const handleMouseleave = $subMenu.handleMouseleave;
-            $subMenu.handleMouseleave = e => {
+            const handleMouseleave = $subMenu.value.handleMouseleave;
+            $subMenu.value.handleMouseleave = (e: any) => {
                 if (device.value === 'mobile') {
                     return;
                 }

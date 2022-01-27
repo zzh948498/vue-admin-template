@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import path from 'path-browserify';
 import { isExternal } from '@/utils/validate';
-import IconItem from './Item.jsx';
+import IconItem from './Item';
 import AppLink from './Link.vue';
 import { useFixiOSBug } from './FixiOSBug';
-import { ref } from 'vue';
+import { PropType, ref } from 'vue';
+import { RouteRecordRaw } from 'vue-router';
 const props = defineProps({
     item: {
-        type: Object,
+        type: Object as PropType<RouteRecordRaw>,
         required: true,
     },
     isNest: {
@@ -20,10 +21,10 @@ const props = defineProps({
     },
 });
 const { subMenu } = useFixiOSBug();
-const onlyOneChild = ref(null);
-const hasOneShowingChild = (children = [], parent) => {
+const onlyOneChild = ref();
+const hasOneShowingChild = (children: RouteRecordRaw[] = [], parent: RouteRecordRaw) => {
     const showingChildren = children.filter(item => {
-        if (item.hidden) {
+        if (item.meta?.hidden) {
             return false;
         } else {
             // Temp set(will be used if only has one showing child)
@@ -45,7 +46,7 @@ const hasOneShowingChild = (children = [], parent) => {
 
     return false;
 };
-const resolvePath = routePath => {
+const resolvePath = (routePath: string) => {
     if (isExternal(routePath)) {
         return routePath;
     }
@@ -57,12 +58,13 @@ const resolvePath = routePath => {
 </script>
 
 <template>
-    <template v-if="!item.hidden">
+    <template v-if="!item.meta?.hidden">
         <li
             v-if="
                 hasOneShowingChild(item.children, item) &&
-                (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-                !item.alwaysShow
+                (!onlyOneChild.children || onlyOneChild.noShowingChildren)
+                //  &&
+                // !item.alwaysShow
             "
         >
             <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
@@ -79,7 +81,7 @@ const resolvePath = routePath => {
         <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
             <template v-if="item.meta" #title>
                 <IconItem :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
-                <span>{{ item.meta.title }}</span>
+                <span>{{ item.meta?.title }}</span>
             </template>
 
             <SidebarItem
