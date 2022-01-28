@@ -4,7 +4,7 @@ import viteSvgIcons from 'vite-plugin-svg-icons';
 import { defineConfig } from 'vite';
 import path from 'path';
 export default ({ command }) => {
-    let prodMock = false;
+    let prodMock = true;
     return defineConfig({
         plugins: [
             createVuePlugin({
