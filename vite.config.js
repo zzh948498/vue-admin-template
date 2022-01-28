@@ -29,7 +29,7 @@ export default ({ command }) => {
         base: '/vue-admin-template/',
         build: {
             assetsDir: 'assets',
-            outDir: 'dist/vue-admin-template/',
+            // outDir: 'dist/vue-admin-template/',
         },
         server: {
             host: '0.0.0.0',
