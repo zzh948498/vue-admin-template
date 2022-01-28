@@ -38,7 +38,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             loginApi({ username: username.trim(), password: password })
                 .then(response => {
-                    console.log(response)
                     const { data } = response;
                     commit('SET_TOKEN', data.token);
                     setToken(data.token);
@@ -57,7 +56,6 @@ const actions = {
             getInfo(state.token)
                 .then(response => {
                     const { data } = response;
-
                     if (!data) {
                         reject('Verification failed, please Login again.');
                     }
