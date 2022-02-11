@@ -19,7 +19,6 @@ export default [
         type: 'get',
         response: () => {
             const items = data.items;
-
             return {
                 code: 20000,
                 data: {

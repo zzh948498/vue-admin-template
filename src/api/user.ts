@@ -8,8 +8,8 @@ export function loginApi(data: LoginApiInput) {
     console.log(hexMd5('1'));
     return request({
         url: '/vue-admin-template/user/login',
-        method: 'post',
-        data,
+        method: 'get',
+        params: data,
     });
 }
 
@@ -24,7 +24,7 @@ export function getInfo(token: string) {
 export function logout(token: string) {
     return request({
         url: '/vue-admin-template/user/logout',
-        method: 'post',
+        method: 'get',
         params: { token },
     });
 }

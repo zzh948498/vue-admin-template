@@ -26,9 +26,9 @@ export default [
     // user login
     {
         url: '/vue-admin-template/user/login',
-        type: 'post',
+        type: 'get',
         response: (config: any) => {
-            const { username } = config.body;
+            const { username } = config.query;
             const token = Reflect.get(tokens, username);
 
             // mock error
@@ -72,7 +72,7 @@ export default [
     // user logout
     {
         url: '/vue-admin-template/user/logout',
-        type: 'post',
+        type: 'get',
         response: () => {
             return {
                 code: 20000,
