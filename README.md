@@ -1,4 +1,4 @@
-# admin-vue （此分支开发中）
+# admin-vue
 后台管理模板 vue2/vue3， 支持vite，webpack，分别在这些分支里, 默认分支vite + vue2
 
 fork 于 [https://github.com/PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
@@ -20,7 +20,7 @@ pnpm dev
 
 ```bash
 # 构建测试环境
-pnpm build:stage
+pnpm build
 
 # 构建生产环境
 pnpm build:prod
