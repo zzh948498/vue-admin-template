@@ -1,5 +1,5 @@
 import { viteMockServe } from 'vite-plugin-mock';
-import viteSvgIcons from 'vite-plugin-svg-icons';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
@@ -22,7 +22,7 @@ export default ({ command }) => {
                 resolvers: [ElementPlusResolver()],
             }),
             // 添加下面插件
-            viteSvgIcons({
+            createSvgIconsPlugin({
                 iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
                 symbolId: 'icon-[dir]-[name]',
             }),
