@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-
+import { createPinia } from 'pinia';
 // css
 import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
 import 'element-plus/dist/index.css';
@@ -31,5 +31,6 @@ app.use(ElementPlus, {
     locale: zhCn,
 });
 app.use(store, key);
+app.use(createPinia());
 app.use(router);
 app.mount('#app');
