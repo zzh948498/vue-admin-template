@@ -25,10 +25,10 @@ const users = {
 export default [
     // user login
     {
-        url: '/vue-admin-template/user/login',
-        type: 'post',
+        url: '/mocks/user/login',
+        type: 'get',
         response: config => {
-            const { username } = config.body;
+            const { username } = config.query;
             const token = tokens[username];
 
             // mock error
@@ -48,7 +48,7 @@ export default [
 
     // get user info
     {
-        url: '/vue-admin-template/user/info',
+        url: '/mocks/user/info',
         type: 'get',
         response: config => {
             const { token } = config.query;
@@ -71,8 +71,8 @@ export default [
 
     // user logout
     {
-        url: '/vue-admin-template/user/logout',
-        type: 'post',
+        url: '/mocks/user/logout',
+        type: 'get',
         response: () => {
             return {
                 code: 20000,

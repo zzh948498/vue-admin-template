@@ -4,7 +4,7 @@ import viteSvgIcons from 'vite-plugin-svg-icons';
 import { defineConfig } from 'vite';
 import path from 'path';
 export default ({ command }) => {
-    let prodMock = false;
+    let prodMock = true;
     return defineConfig({
         plugins: [
             createVuePlugin({
@@ -26,6 +26,11 @@ export default ({ command }) => {
                 `,
             }),
         ],
+        base: '/vue-admin-template/',
+        // build: {
+        //     assetsDir: 'assets',
+        //     // outDir: 'dist/vue-admin-template/',
+        // },
         server: {
             host: '0.0.0.0',
         },

@@ -1,7 +1,10 @@
 # admin-vue
 后台管理模板 vue2/vue3， 支持vite，webpack，分别在这些分支里, 默认分支vite + vue2
 
+预览地址[https://zzh948498.github.io/vue-admin-template](https://zzh948498.github.io/vue-admin-template)
+
 fork 于 [https://github.com/PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
+
 ## Build Setup
 拉取本项目
 使用最先进的包管理工具pnpm
