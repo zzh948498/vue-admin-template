@@ -70,6 +70,7 @@ const userModule: Module<UserState, RootState> = {
             commit('SET_ROLES', roles);
             commit('SET_NAME', name);
             commit('SET_AVATAR', avatar);
+            return data
         },
 
         // user logout

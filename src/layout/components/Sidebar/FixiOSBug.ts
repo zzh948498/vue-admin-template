@@ -8,7 +8,7 @@ export const useFixiOSBug = () => {
     onMounted(() => {
         // In order to fix the click on menu on the ios device will trigger the mouseleave bug
         // https://github.com/PanJiaChen/vue-element-admin/issues/1135
-        fixBugIniOS();
+        // fixBugIniOS();
     });
     const fixBugIniOS = () => {
         const $subMenu = subMenu;

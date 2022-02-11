@@ -3,7 +3,7 @@ import path from 'path-browserify';
 import { isExternal } from '@/utils/validate';
 import IconItem from './Item';
 import AppLink from './Link.vue';
-import { useFixiOSBug } from './FixiOSBug';
+// import { useFixiOSBug } from './FixiOSBug';
 import { PropType, ref } from 'vue';
 import { RouteRecordRaw } from 'vue-router';
 const props = defineProps({
@@ -20,7 +20,7 @@ const props = defineProps({
         default: '',
     },
 });
-const { subMenu } = useFixiOSBug();
+// const { subMenu } = useFixiOSBug();
 const onlyOneChild = ref();
 const hasOneShowingChild = (children: RouteRecordRaw[] = [], parent: RouteRecordRaw) => {
     const showingChildren = children.filter(item => {

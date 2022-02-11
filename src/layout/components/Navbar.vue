@@ -7,8 +7,8 @@ import Hamburger from '@/components/Hamburger/index.vue';
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
-const sidebar = computed(() => store.getters.app.sidebar);
-const avatar = computed(() => store.getters.user.avatar);
+const sidebar = computed(() => store.getters['app/sidebar']);
+const avatar = computed(() => store.getters['user/avatar']);
 const toggleSideBar = () => store.dispatch('app/toggleSideBar');
 const logout = async () => {
     await store.dispatch('user/logout');

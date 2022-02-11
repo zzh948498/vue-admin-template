@@ -6,8 +6,8 @@ import Logo from './Logo.vue';
 import SidebarItem from './SidebarItem.vue';
 const store = useStore();
 const route = useRoute();
-const permissionRoutes = computed(() => store.getters.permission.permissionRoutes);
-const sidebar = computed(() => store.getters.app.sidebar);
+const permissionRoutes = computed(() => store.getters['permission/permissionRoutes']);
+const sidebar = computed(() => store.getters['app/sidebar']);
 const activeMenu = computed(() => {
     const { meta, path } = route;
     // if set path, the sidebar will highlight the path you set
