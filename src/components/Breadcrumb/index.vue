@@ -11,7 +11,7 @@ const getBreadcrumb = () => {
     const first = matched[0];
 
     if (!isDashboard(first)) {
-        matched.unshift({ path: '/dashboard', meta: { title: 'Dashboard' } } as any);
+        matched.unshift({ path: '/dashboard', meta: { title: 'Dashboard' } } as RouteLocationMatched);
         // matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(matched);
     }
 

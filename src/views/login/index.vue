@@ -7,14 +7,15 @@ import { ElForm, ElInput } from 'element-plus';
 const store = useStore();
 const router = useRouter();
 const route = useRoute();
-const validateUsername = (rule: any, value: any, callback: any) => {
+// https://element-plus.gitee.io/zh-CN/component/form.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%A1%E9%AA%8C%E8%A7%84%E5%88%99
+const validateUsername = (rule: any, value: string, callback: any) => {
     if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'));
     } else {
         callback();
     }
 };
-const validatePassword = (rule: any, value: any, callback: any) => {
+const validatePassword = (rule: any, value: string, callback: any) => {
     if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'));
     } else {
@@ -87,12 +88,12 @@ watch(
                     <svg-icon icon-class="user" />
                 </span>
                 <el-input
+                    ref="username"
+                    v-model="loginForm.username"
                     name="username"
                     type="text"
                     tabindex="1"
                     auto-complete="on"
-                    ref="username"
-                    v-model="loginForm.username"
                     placeholder="Username"
                 />
             </el-form-item>
@@ -118,10 +119,10 @@ watch(
             </el-form-item>
 
             <el-button
-                @click.prevent="handleLogin"
                 :loading="loading"
                 type="primary"
                 style="width: 100%; margin-bottom: 30px"
+                @click.prevent="handleLogin"
             >
                 Login
             </el-button>
