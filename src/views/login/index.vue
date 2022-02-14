@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { validUsername } from '@/utils/validate';
 import { nextTick, reactive, ref, watch } from 'vue';
-import { useStore } from '@/store';
+import { useUserStore } from '@/store';
 import { useRouter, useRoute } from 'vue-router';
 import { ElForm, ElInput } from 'element-plus';
-const store = useStore();
+const userStore = useUserStore();
 const router = useRouter();
 const route = useRoute();
 // https://element-plus.gitee.io/zh-CN/component/form.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%A1%E9%AA%8C%E8%A7%84%E5%88%99
@@ -49,7 +49,7 @@ const handleLogin = () => {
     loginFormRef.value?.validate(async valid => {
         if (valid) {
             loading.value = true;
-            await store.dispatch('user/login', loginForm);
+            await userStore.login(loginForm);
             loading.value = false;
             // catch todo
             router.push({ path: redirect.value || '/' });

@@ -40,9 +40,9 @@ interface PermissionState {
     routes: RouteRecordRaw[];
     addRoutes: RouteRecordRaw[];
 }
-export const usePermissionStore = defineStore<string, PermissionState>({
+export const usePermissionStore = defineStore({
     id: 'permission',
-    state: () => ({
+    state: (): PermissionState => ({
         routes: [],
         addRoutes: [],
     }),

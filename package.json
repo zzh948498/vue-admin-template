@@ -27,8 +27,7 @@
     "pinia": "^2.0.11",
     "react-native-md5": "^1.0.0",
     "vue": "^3.2.30",
-    "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",

@@ -11,7 +11,9 @@ const key = computed(() => route.path);
         </transition> -->
         <router-view v-slot="{ Component }">
             <transition name="fade-transform" mode="out-in">
+                <!-- <div :key="routerView.name"> -->
                 <component :is="Component" :key="key" />
+                <!-- </div> -->
             </transition>
         </router-view>
     </section>

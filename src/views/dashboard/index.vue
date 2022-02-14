@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from '@/store';
-const store = useStore();
-const name = computed(() => store.getters['user/name']);
-const roles = computed(() => store.getters['user/roles']);
+import { useUserStore } from '@/store';
+const userStore = useUserStore();
+const name = computed(() => userStore.userName);
+const roles = computed(() => userStore.userRoles);
 </script>
 <template>
     <div class="dashboard-container">

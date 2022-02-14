@@ -37,7 +37,6 @@ specifiers:
   vue: ^3.2.30
   vue-router: ^4.0.12
   vue-tsc: ^0.31.2
-  vuex: ^4.0.2
 
 dependencies:
   '@element-plus/icons-vue': 0.2.7_vue@3.2.30
@@ -53,7 +52,6 @@ dependencies:
   react-native-md5: 1.0.0
   vue: 3.2.30
   vue-router: 4.0.12_vue@3.2.30
-  vuex: 4.0.2_vue@3.2.30
 
 devDependencies:
   '@types/js-cookie': 3.0.1
@@ -3918,15 +3916,6 @@ packages:
       '@vue/runtime-dom': 3.2.30
       '@vue/server-renderer': 3.2.30_vue@3.2.30
       '@vue/shared': 3.2.30
-    dev: false
-
-  /vuex/4.0.2_vue@3.2.30:
-    resolution: {integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==}
-    peerDependencies:
-      vue: ^3.0.2
-    dependencies:
-      '@vue/devtools-api': 6.0.6
-      vue: 3.2.30
     dev: false
 
   /webpack-virtual-modules/0.4.3:

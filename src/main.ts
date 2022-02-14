@@ -14,7 +14,6 @@ import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 import App from './App.vue';
-import store, { key } from './store';
 import router from './router';
 import '@/permission'; // permission control
 
@@ -30,7 +29,6 @@ elementIcons.forEach(it => app.component(it.name, it));
 app.use(ElementPlus, {
     locale: zhCn,
 });
-app.use(store, key);
 app.use(createPinia());
 app.use(router);
 app.mount('#app');

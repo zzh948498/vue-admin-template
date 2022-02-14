@@ -12,10 +12,10 @@ export const useUserStore = defineStore({
         roles: [],
     }),
     getters: {
-        token: state => state.token,
-        avatar: state => state.avatar,
-        name: state => state.name,
-        roles: state => state.roles,
+        userToken: state => state.token,
+        userAvatar: state => state.avatar,
+        userName: state => state.name,
+        userRoles: state => state.roles,
     },
     actions: {
         // user login
@@ -56,7 +56,7 @@ export const useUserStore = defineStore({
             this.$reset();
         },
         // remove token
-        resetToken() {
+        async resetToken() {
             removeToken(); // must remove  token  first
             this.$reset();
         },

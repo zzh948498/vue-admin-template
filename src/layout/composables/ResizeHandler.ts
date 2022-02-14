@@ -1,14 +1,15 @@
 import { watch, onBeforeMount, onBeforeUnmount, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from '@/store';
+import { useAppStore, useSettingStore } from '@/store';
 const { body } = document;
 const WIDTH = 992; // refer to Bootstrap's responsive design
 export const useResizeHandler = () => {
     const route = useRoute();
-    const store = useStore();
-    const sidebar = computed(() => store.state.app.sidebar);
-    const device = computed(() => store.state.app.device);
-    const fixedHeader = computed(() => store.state.settings.fixedHeader);
+    const appStore = useAppStore();
+    const settingStore = useSettingStore();
+    const sidebar = computed(() => appStore.sidebar);
+    const device = computed(() => appStore.device);
+    const fixedHeader = computed(() => settingStore.fixedHeader);
     const classObj = computed(() => ({
         hideSidebar: !sidebar.value.opened,
         openSidebar: sidebar.value.opened,
@@ -18,7 +19,7 @@ export const useResizeHandler = () => {
     watch(route, newRoute => {
         console.log(newRoute);
         if (device.value === 'mobile' && sidebar.value.opened) {
-            store.dispatch('app/closeSideBar', { withoutAnimation: false });
+            appStore.closeSideBar({ withoutAnimation: false });
         }
     });
     onBeforeMount(() => {
@@ -30,11 +31,11 @@ export const useResizeHandler = () => {
     onMounted(() => {
         const isMobile = __isMobile();
         if (isMobile) {
-            store.dispatch('app/toggleDevice', 'mobile');
-            store.dispatch('app/closeSideBar', { withoutAnimation: true });
+            appStore.toggleDevice('mobile');
+            appStore.closeSideBar({ withoutAnimation: true });
         }
     });
-    const handleClickOutside = () => store.dispatch('app/closeSideBar', { withoutAnimation: false });
+    const handleClickOutside = () => appStore.closeSideBar({ withoutAnimation: false });
     const __isMobile = () => {
         const rect = body.getBoundingClientRect();
         return rect.width - 1 < WIDTH;
@@ -42,10 +43,10 @@ export const useResizeHandler = () => {
     const __resizeHandler = () => {
         if (!document.hidden) {
             const isMobile = __isMobile();
-            store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop');
+            appStore.toggleDevice(isMobile ? 'mobile' : 'desktop');
 
             if (isMobile) {
-                store.dispatch('app/closeSideBar', { withoutAnimation: true });
+                appStore.closeSideBar({ withoutAnimation: true });
             }
         }
     };

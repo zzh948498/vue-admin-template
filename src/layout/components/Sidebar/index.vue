@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from '@/store';
+import { useAppStore, usePermissionStore, useSettingStore } from '@/store';
 import Logo from './Logo.vue';
 import SidebarItem from './SidebarItem.vue';
-const store = useStore();
+const appStore = useAppStore();
+const permissionStore = usePermissionStore();
+const settingStore = useSettingStore();
 const route = useRoute();
-const permissionRoutes = computed(() => store.getters['permission/permissionRoutes']);
-const sidebar = computed(() => store.getters['app/sidebar']);
+const permissionRoutes = computed(() => permissionStore.permissionRoutes);
+const sidebar = computed(() => appStore.appSidebar);
 const activeMenu = computed(() => {
     const { meta, path } = route;
     // if set path, the sidebar will highlight the path you set
@@ -16,7 +18,7 @@ const activeMenu = computed(() => {
     }
     return path;
 });
-const showLogo = computed(() => store.state.settings.sidebarLogo);
+const showLogo = computed(() => settingStore.sidebarLogo);
 const variables = computed(() => ({ menuText: '#bfcbd9', menuActiveText: '#409EFF', menuBg: '#304156' }));
 const isCollapse = computed(() => !sidebar.value.opened);
 </script>

@@ -1,9 +1,9 @@
 import { computed, onMounted, ref } from 'vue';
-import { useStore } from '@/store';
+import { useAppStore } from '@/store';
 
 export const useFixiOSBug = () => {
-    const store = useStore();
-    const device = computed(() => store.state.app.device);
+    const appStore = useAppStore();
+    const device = computed(() => appStore.device);
     const subMenu = ref();
     onMounted(() => {
         // In order to fix the click on menu on the ios device will trigger the mouseleave bug

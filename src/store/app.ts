@@ -12,8 +12,8 @@ export const useAppStore = defineStore({
     id: 'app',
     state: () => state,
     getters: {
-        sidebar: state => state.sidebar,
-        device: state => state.device,
+        appSidebar: state => state.sidebar,
+        appDevice: state => state.device,
     },
     actions: {
         toggleSideBar() {
