@@ -18,14 +18,18 @@
             "@/*": [
                 "src/*"
             ]
-        }
+        },
+        "types": [
+            "cypress"
+        ]
     },
     "include": [
         "src/**/*.ts",
         "src/**/*.d.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
-        "tests/**/*.ts",
+        // "tests/**/*.ts",
+        "cypress/**/*.ts",
     ],
     "exclude": [
         "node_modules",
