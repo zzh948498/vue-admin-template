@@ -25,7 +25,7 @@ const users = {
 export default [
     // user login
     {
-        url: '/vue-admin-template/user/login',
+        url: '/mocks/user/login',
         type: 'get',
         response: (config: any) => {
             const { username } = config.query;
@@ -48,7 +48,7 @@ export default [
 
     // get user info
     {
-        url: '/vue-admin-template/user/info',
+        url: '/mocks/user/info',
         type: 'get',
         response: (config: any) => {
             const { token } = config.query;
@@ -71,7 +71,7 @@ export default [
 
     // user logout
     {
-        url: '/vue-admin-template/user/logout',
+        url: '/mocks/user/logout',
         type: 'get',
         response: () => {
             return {
