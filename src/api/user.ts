@@ -7,7 +7,7 @@ export interface LoginApiInput {
 export function loginApi(data: LoginApiInput) {
     console.log(hexMd5('1'));
     return request({
-        url: '/vue-admin-template/user/login',
+        url: '/mocks/user/login',
         method: 'get',
         params: data,
     });
@@ -15,7 +15,7 @@ export function loginApi(data: LoginApiInput) {
 
 export function getInfo(token: string) {
     return request({
-        url: '/vue-admin-template/user/info',
+        url: '/mocks/user/info',
         method: 'get',
         params: { token },
     });
@@ -23,7 +23,7 @@ export function getInfo(token: string) {
 
 export function logout(token: string) {
     return request({
-        url: '/vue-admin-template/user/logout',
+        url: '/mocks/user/logout',
         method: 'get',
         params: { token },
     });
