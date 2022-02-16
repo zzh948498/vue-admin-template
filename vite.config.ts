@@ -3,6 +3,7 @@ import { viteMockServe } from 'vite-plugin-mock';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -13,6 +14,35 @@ export default ({ command }) => {
     return defineConfig({
         plugins: [
             vue(),
+            VitePWA({
+                includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+                manifest: {
+                    name: 'Vue Typescript Admin',
+                    // eslint-disable-next-line camelcase
+                    short_name: 'Vue Ts Admin',
+                    description: 'Description of your app',
+                    // eslint-disable-next-line camelcase
+                    theme_color: '#ffffff',
+                    icons: [
+                        {
+                            src: 'img/icons/android-chrome-192x192.png',
+                            sizes: '192x192',
+                            type: 'image/png',
+                        },
+                        {
+                            src: 'img/icons/android-chrome-512x512.png',
+                            sizes: '512x512',
+                            type: 'image/png',
+                        },
+                        {
+                            src: 'img/icons/android-chrome-512x512.png',
+                            sizes: '512x512',
+                            type: 'image/png',
+                            purpose: 'any maskable',
+                        },
+                    ],
+                },
+            }),
             vueJsx({
                 // options are passed on to @vue/babel-plugin-jsx
             }),

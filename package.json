@@ -60,6 +60,7 @@
     "unplugin-vue-components": "^0.17.18",
     "vite": "^2.8.0",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-pwa": "^0.11.13",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-router-mock": "^0.1.7",
     "vue-tsc": "^0.31.2"
