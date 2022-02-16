@@ -6,7 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 tests/**/coverage/
-
+# Tests
+/coverage
 # Editor directories and files
 .idea
 .vscode
@@ -15,3 +16,4 @@ tests/**/coverage/
 *.njsproj
 *.sln
 yarn*
+components.d.ts

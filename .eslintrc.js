@@ -1,6 +1,11 @@
 module.exports = {
     root: true,
+    globals: {
+        defineProps: 'readonly',
+        defineEmits: 'readonly',
+    },
     parserOptions: {
+        parser: '@typescript-eslint/parser',
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: {
@@ -14,11 +19,11 @@ module.exports = {
     },
     // https://eslint.vuejs.org/
     extends: [
+        'plugin:@typescript-eslint/recommended',
         'plugin:vue/base',
-        'plugin:vue/essential',
-        'plugin:vue/strongly-recommended',
-        'plugin:vue/recommended',
-        'eslint:recommended',
+        'plugin:vue/vue3-essential',
+        'plugin:vue/vue3-strongly-recommended',
+        'plugin:vue/vue3-recommended',
         'prettier',
     ],
 
@@ -54,6 +59,8 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 0,
         'vue/attribute-hyphenation': 0,
         'vue/multi-word-component-names': 0,
-        // 'vue/html-indent': ['error', 4],
+        'vue/html-indent': 0,
+        'vue/v-on-event-hyphenation': [2, 'never'],
+        // Enable vue/script-setup-uses-vars rule
     },
 };

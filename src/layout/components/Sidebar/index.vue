@@ -1,6 +1,30 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useAppStore, usePermissionStore, useSettingStore } from '@/store';
+import Logo from './Logo.vue';
+import SidebarItem from './SidebarItem.vue';
+const appStore = useAppStore();
+const permissionStore = usePermissionStore();
+const settingStore = useSettingStore();
+const route = useRoute();
+const permissionRoutes = computed(() => permissionStore.permissionRoutes);
+const sidebar = computed(() => appStore.appSidebar);
+const activeMenu = computed(() => {
+    const { meta, path } = route;
+    // if set path, the sidebar will highlight the path you set
+    if (meta.activeMenu) {
+        return meta.activeMenu;
+    }
+    return path;
+});
+const showLogo = computed(() => settingStore.sidebarLogo);
+const variables = computed(() => ({ menuText: '#bfcbd9', menuActiveText: '#409EFF', menuBg: '#304156' }));
+const isCollapse = computed(() => !sidebar.value.opened);
+</script>
 <template>
     <div :class="{ 'has-logo': showLogo }">
-        <logo v-if="showLogo" :collapse="isCollapse" />
+        <Logo v-if="showLogo" :collapse="isCollapse" />
         <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
                 :default-active="activeMenu"
@@ -12,51 +36,13 @@
                 :collapse-transition="false"
                 mode="vertical"
             >
-                <sidebar-item
-                    v-for="route in permissionRoutes"
-                    :key="route.path"
-                    :item="route"
-                    :base-path="route.path"
+                <SidebarItem
+                    v-for="curRoute in permissionRoutes"
+                    :key="curRoute.path"
+                    :item="curRoute"
+                    :base-path="curRoute.path"
                 />
             </el-menu>
         </el-scrollbar>
     </div>
 </template>
-
-<script>
-import { mapGetters } from 'vuex';
-import Logo from './Logo.vue';
-import SidebarItem from './SidebarItem.vue';
-// import variables from '@/styles/variables.scss';
-
-export default {
-    components: { SidebarItem, Logo },
-    computed: {
-        ...mapGetters(['permissionRoutes', 'sidebar']),
-        activeMenu() {
-            const route = this.$route;
-            const { meta, path } = route;
-            // if set path, the sidebar will highlight the path you set
-            if (meta.activeMenu) {
-                return meta.activeMenu;
-            }
-            return path;
-        },
-        showLogo() {
-            return this.$store.state.settings.sidebarLogo;
-        },
-        variables() {
-            // console.log(variables)
-            // return variables;
-            return {
-                menuText: '#bfcbd9',
-                menuActiveText: '#409EFF',
-                menuBg: '#304156',
-            };
-        },
-        isCollapse() {
-            return !this.sidebar.opened;
-        },
-    },
-};
-</script>

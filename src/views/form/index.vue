@@ -1,6 +1,29 @@
+<script setup lang="ts">
+import { reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+const form = reactive({
+    name: '',
+    region: '',
+    date1: '',
+    date2: '',
+    delivery: false,
+    type: [],
+    resource: '',
+    desc: '',
+});
+const onSubmit = () => {
+    ElMessage('submit!');
+};
+const onCancel = () => {
+    ElMessage({
+        message: 'cancel!',
+        type: 'warning',
+    });
+};
+</script>
 <template>
     <div class="app-container">
-        <el-form ref="form" :model="form" label-width="120px">
+        <el-form ref="form1" :model="form" label-width="120px">
             <el-form-item label="Activity name">
                 <el-input v-model="form.name" />
             </el-form-item>
@@ -12,11 +35,21 @@
             </el-form-item>
             <el-form-item label="Activity time">
                 <el-col :span="11">
-                    <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" style="width: 100%;" />
+                    <el-date-picker
+                        v-model="form.date1"
+                        type="date"
+                        placeholder="Pick a date"
+                        style="width: 100%"
+                    />
                 </el-col>
                 <el-col :span="2" class="line">-</el-col>
                 <el-col :span="11">
-                    <el-time-picker v-model="form.date2" type="fixed-time" placeholder="Pick a time" style="width: 100%;" />
+                    <el-time-picker
+                        v-model="form.date2"
+                        type="fixed-time"
+                        placeholder="Pick a time"
+                        style="width: 100%"
+                    />
                 </el-col>
             </el-form-item>
             <el-form-item label="Instant delivery">
@@ -46,40 +79,8 @@
         </el-form>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
-            }
-        };
-    },
-    methods: {
-        onSubmit() {
-            this.$message('submit!');
-        },
-        onCancel() {
-            this.$message({
-                message: 'cancel!',
-                type: 'warning'
-            });
-        }
-    }
-};
-</script>
-
 <style scoped>
-.line{
-  text-align: center;
+.line {
+    text-align: center;
 }
 </style>
-
