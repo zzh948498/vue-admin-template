@@ -46,6 +46,7 @@ specifiers:
   vue-router: ^4.0.12
   vue-router-mock: ^0.1.7
   vue-tsc: ^0.31.2
+  workbox-window: ^6.4.2
 
 dependencies:
   '@element-plus/icons-vue': 0.2.7_vue@3.2.30
@@ -61,6 +62,7 @@ dependencies:
   react-native-md5: 1.0.0
   vue: 3.2.30
   vue-router: 4.0.12_vue@3.2.30
+  workbox-window: 6.4.2
 
 devDependencies:
   '@types/jest': 27.4.0
@@ -1939,7 +1941,6 @@ packages:
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
-    dev: true
 
   /@types/yargs-parser/20.2.1:
     resolution: {integrity: sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw==}
@@ -8174,7 +8175,6 @@ packages:
 
   /workbox-core/6.4.2:
     resolution: {integrity: sha512-1U6cdEYPcajRXiboSlpJx6U7TvhIKbxRRerfepAJu2hniKwJ3DHILjpU/zx3yvzSBCWcNJDoFalf7Vgd7ey/rw==}
-    dev: true
 
   /workbox-expiration/6.4.2:
     resolution: {integrity: sha512-0hbpBj0tDnW+DZOUmwZqntB/8xrXOgO34i7s00Si/VlFJvvpRKg1leXdHHU8ykoSBd6+F2KDcMP3swoCi5guLw==}
@@ -8251,7 +8251,6 @@ packages:
     dependencies:
       '@types/trusted-types': 2.0.2
       workbox-core: 6.4.2
-    dev: true
 
   /wrap-ansi/6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}

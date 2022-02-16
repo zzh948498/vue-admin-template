@@ -15,6 +15,7 @@ export default ({ command }) => {
         plugins: [
             vue(),
             VitePWA({
+                // registerType: 'autoUpdate',
                 includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
                 manifest: {
                     name: 'Vue Typescript Admin',
@@ -69,6 +70,7 @@ export default ({ command }) => {
                 `,
             }),
         ],
+        base: '/vue-admin-template/',
         server: {
             host: '0.0.0.0',
         },
