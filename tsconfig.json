@@ -20,7 +20,8 @@
             ]
         },
         "types": [
-            "cypress"
+            "cypress",
+            "vite-plugin-pwa/client"
         ]
     },
     "include": [
