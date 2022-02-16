@@ -23,7 +23,7 @@ export default ({ command }) => {
                     short_name: 'Vue Ts Admin',
                     description: 'Description of your app',
                     // eslint-disable-next-line camelcase
-                    theme_color: '#ffffff',
+                    theme_color: '#4DBA87',
                     icons: [
                         {
                             src: 'img/icons/android-chrome-192x192.png',
