@@ -135,7 +135,7 @@ watch(
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
@@ -153,22 +153,27 @@ $cursor: #fff;
 .login-container {
     .el-input {
         display: inline-block;
-        height: 47px;
+        height: 49px;
         width: 85%;
+        .el-input__wrapper {
+            background: $bg;
+            box-shadow: none;
+            border: none;
+            height: 49px;
+            input {
+                background: $bg;
+                border: 0px;
+                -webkit-appearance: none;
+                border-radius: 0px;
+                padding: 12px 5px 12px 15px;
+                color: $light_gray;
+                height: 47px;
+                caret-color: $cursor;
 
-        input {
-            background: transparent;
-            border: 0px;
-            -webkit-appearance: none;
-            border-radius: 0px;
-            padding: 12px 5px 12px 15px;
-            color: $light_gray;
-            height: 47px;
-            caret-color: $cursor;
-
-            &:-webkit-autofill {
-                box-shadow: 0 0 0px 1000px $bg inset !important;
-                -webkit-text-fill-color: $cursor !important;
+                &:-webkit-autofill {
+                    box-shadow: 0 0 0px 1000px $bg inset !important;
+                    -webkit-text-fill-color: $cursor !important;
+                }
             }
         }
     }
@@ -237,7 +242,7 @@ $light_gray: #eee;
     .show-pwd {
         position: absolute;
         right: 10px;
-        top: 7px;
+        top: 10px;
         font-size: 16px;
         color: $dark_gray;
         cursor: pointer;

@@ -58,40 +58,45 @@ const resolvePath = (routePath: string) => {
 </script>
 
 <template>
-    <template v-if="!item.meta?.hidden">
-        <li
-            v-if="
-                hasOneShowingChild(item.children, item) &&
-                (!onlyOneChild.children || onlyOneChild.noShowingChildren)
-                //  &&
-                // !item.alwaysShow
-            "
-        >
-            <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-                <el-menu-item
-                    :index="resolvePath(onlyOneChild.path)"
-                    :class="{ 'submenu-title-noDropdown': !isNest }"
-                >
-                    <IconItem :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
-                    <template #title>{{ onlyOneChild.meta?.title }}</template>
-                </el-menu-item>
-            </AppLink>
-        </li>
+    <div>
+        <template v-if="!item.meta?.hidden">
+            <li
+                v-if="
+                    hasOneShowingChild(item.children, item) &&
+                    (!onlyOneChild.children || onlyOneChild.noShowingChildren)
+                    //  &&
+                    // !item.alwaysShow
+                "
+            >
+                <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+                    <el-menu-item
+                        :index="resolvePath(onlyOneChild.path)"
+                        :class="{ 'submenu-title-noDropdown': !isNest }"
+                    >
+                        <IconItem :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
+                        <template #title>{{ onlyOneChild.meta?.title }}</template>
+                    </el-menu-item>
+                </AppLink>
+            </li>
 
-        <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
-            <template v-if="item.meta" #title>
-                <IconItem :elSvgIcon="item.meta && item.meta.elSvgIcon" :icon="item.meta && item.meta.icon" />
-                <span>{{ item.meta?.title }}</span>
-            </template>
+            <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+                <template v-if="item.meta" #title>
+                    <IconItem
+                        :elSvgIcon="item.meta && item.meta.elSvgIcon"
+                        :icon="item.meta && item.meta.icon"
+                    />
+                    <span>{{ item.meta?.title }}</span>
+                </template>
 
-            <SidebarItem
-                v-for="child in item.children"
-                :key="child.path"
-                :is-nest="true"
-                :item="child"
-                :base-path="resolvePath(child.path)"
-                class="nest-menu"
-            />
-        </el-sub-menu>
-    </template>
+                <SidebarItem
+                    v-for="child in item.children"
+                    :key="child.path"
+                    :is-nest="true"
+                    :item="child"
+                    :base-path="resolvePath(child.path)"
+                    class="nest-menu"
+                />
+            </el-sub-menu>
+        </template>
+    </div>
 </template>

@@ -34,23 +34,9 @@ const onCancel = () => {
                 </el-select>
             </el-form-item>
             <el-form-item label="Activity time">
-                <el-col :span="11">
-                    <el-date-picker
-                        v-model="form.date1"
-                        type="date"
-                        placeholder="Pick a date"
-                        style="width: 100%"
-                    />
-                </el-col>
-                <el-col :span="2" class="line">-</el-col>
-                <el-col :span="11">
-                    <el-time-picker
-                        v-model="form.date2"
-                        type="fixed-time"
-                        placeholder="Pick a time"
-                        style="width: 100%"
-                    />
-                </el-col>
+                <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" />
+                <div class="line">-</div>
+                <el-time-picker v-model="form.date2" type="fixed-time" placeholder="Pick a time" />
             </el-form-item>
             <el-form-item label="Instant delivery">
                 <el-switch v-model="form.delivery" />
@@ -82,5 +68,6 @@ const onCancel = () => {
 <style scoped>
 .line {
     text-align: center;
+    width: 50px;
 }
 </style>
