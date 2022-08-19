@@ -83,7 +83,7 @@ watch(
                 <h3 class="title">Login Form</h3>
             </div>
 
-            <el-form-item prop="username">
+            <el-form-item prop="username" class="mb-3">
                 <span class="svg-container">
                     <svg-icon icon-class="user" />
                 </span>
@@ -98,7 +98,7 @@ watch(
                 />
             </el-form-item>
 
-            <el-form-item prop="password">
+            <el-form-item prop="password" class="mb-3">
                 <span class="svg-container">
                     <svg-icon icon-class="password" />
                 </span>
@@ -135,7 +135,7 @@ watch(
     </div>
 </template>
 
-<style lang="scss" >
+<style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 

@@ -79,22 +79,15 @@ export default ({ command }) => {
                 '@': path.resolve(__dirname, './src'),
             },
         },
-        // 忽略@charset警告
-        // https://github.com/vitejs/vite/issues/5833
-        css: {
-            postcss: {
-                plugins: [
-                    {
-                        postcssPlugin: 'internal:charset-removal',
-                        AtRule: {
-                            charset: atRule => {
-                                if (atRule.name === 'charset') {
-                                    atRule.remove();
-                                }
-                            },
-                        },
+        build: {
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (id.includes('element-plus/theme')) {
+                            return 'ele';
+                        }
                     },
-                ],
+                },
             },
         },
     });

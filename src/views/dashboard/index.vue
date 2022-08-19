@@ -11,6 +11,7 @@ const roles = computed(() => userStore.userRoles);
         <div class="dashboard-text">
             roles: <span v-for="role in roles" :key="role">{{ role }}</span>
         </div>
+        <h1 class="text-3xl font-bold underline text-center">Hello world!</h1>
     </div>
 </template>
 

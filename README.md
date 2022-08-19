@@ -1,5 +1,5 @@
 # admin-vue
-后台管理模板 vue2/vue3， 支持vite，webpack，ts，分别在这些分支里, 默认分支vite + vue3 + ts
+后台管理模板 , 默认分支vite + vue3 + ts
 
 预览地址[https://zzh948498.github.io/vue-admin-template](https://zzh948498.github.io/vue-admin-template)
 
@@ -17,7 +17,7 @@ pnpm i
 pnpm dev
 ```
 
-浏览器访问 [http://localhost:3000](http://localhost:3000)
+浏览器访问 [http://localhost:5173/vue-admin-template/](http://localhost:5173/vue-admin-template/)
 
 ## 发布
 

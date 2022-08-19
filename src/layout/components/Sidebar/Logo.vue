@@ -16,7 +16,7 @@ const logo = ref('https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef525
                 <img v-if="logo" :src="logo" class="sidebar-logo" />
                 <h1 v-else class="sidebar-title">{{ title }}</h1>
             </router-link>
-            <router-link v-else key="expand" class="sidebar-logo-link" to="/">
+            <router-link v-else key="expand" class="sidebar-logo-link " to="/">
                 <img v-if="logo" :src="logo" class="sidebar-logo" />
                 <h1 class="sidebar-title">{{ title }}</h1>
             </router-link>
@@ -48,6 +48,7 @@ const logo = ref('https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef525
         width: 100%;
 
         & .sidebar-logo {
+            display: inline-block;
             width: 32px;
             height: 32px;
             vertical-align: middle;

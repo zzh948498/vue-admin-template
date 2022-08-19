@@ -24,7 +24,7 @@ const logout = async () => {
 
         <div class="right-menu">
             <el-dropdown class="avatar-container" trigger="click">
-                <div class="avatar-wrapper">
+                <div class="avatar-wrapper flex items-end">
                     <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
                     <el-icon><caret-bottom /></el-icon>
                 </div>

@@ -71,7 +71,7 @@ const resolvePath = (routePath: string) => {
                 <AppLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
                     <el-menu-item
                         :index="resolvePath(onlyOneChild.path)"
-                        :class="{ 'submenu-title-noDropdown': !isNest }"
+                        :class="{ 'sub-menu-title-noDropdown': !isNest }"
                     >
                         <IconItem :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
                         <template #title>{{ onlyOneChild.meta?.title }}</template>
