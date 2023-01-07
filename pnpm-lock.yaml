@@ -19,6 +19,7 @@ specifiers:
   autoprefixer: ^10.4.13
   axios: ^1.2.2
   core-js: ^3.27.1
+  date-fns: ^2.29.3
   element-plus: ^2.2.28
   eslint: ^8.31.0
   eslint-config-prettier: ^8.6.0
@@ -58,6 +59,7 @@ dependencies:
   '@zeronejs/cli': 2.6.0
   axios: 1.2.2
   core-js: 3.27.1
+  date-fns: 2.29.3
   element-plus: 2.2.28_vue@3.2.45
   js-cookie: 3.0.1
   normalize.css: 8.0.1
@@ -3430,6 +3432,11 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
