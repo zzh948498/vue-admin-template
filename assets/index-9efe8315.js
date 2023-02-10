@@ -1,0 +1,1 @@
+import{y as t,W as s,o as c,f as o,g as n}from"./index-2db0d5cc.js";/* empty css                 */const a={},r={style:{padding:"30px"}};function l(_,d){const e=s;return c(),o("div",r,[n(e,{closable:!1,title:"menu 1-3",type:"success"})])}const f=t(a,[["render",l]]);export{f as default};
